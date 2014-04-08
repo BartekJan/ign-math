@@ -253,7 +253,7 @@ else (build_errors)
   if (BUILD_IGNITION_MATH)
     set(TEST_TYPE "UNIT")
     add_subdirectory(src)
-    add_subdirectory(ignition)
+    add_subdirectory(include)
     add_subdirectory(test)
   endif (BUILD_IGNITION_MATH)
 
