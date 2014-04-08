@@ -236,7 +236,8 @@ else (build_errors)
   ign_install_includes("math" ${PROJECT_BINARY_DIR}/ignition/math/config.hh)
 
   include_directories(
-    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_BINARY_DIR}/include
     ${PROJECT_BINARY_DIR}
   )
   link_directories(${PROJECT_BINARY_DIR}/src)
