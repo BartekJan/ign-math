@@ -95,7 +95,7 @@ macro (ign_setup_windows)
 endmacro()
 
 #################################################
-macro (ignition_math_setup_apple)
+macro (ign_setup_apple)
   # NOTE MacOSX provides different system versions than CMake is parsing.
   #      The following table lists the most recent OSX versions
   #     9.x.x = Mac OSX Leopard (10.5)
