@@ -170,6 +170,15 @@ IGN_MATRIX3 IGN_MATRIX3::operator*(const IGN_NUMERIC &_s) const
 }
 
 //////////////////////////////////////////////////
+IGN_VECTOR3 IGN_MATRIX3::operator*(const IGN_VECTOR3 &_v) const
+{
+  return IGN_VECTOR3(
+      this->data[0][0]*_v[0] + this->data[0][1]*_v[1] + this->data[0][2]*_v[2],
+      this->data[1][0]*_v[0] + this->data[1][1]*_v[1] + this->data[1][2]*_v[2],
+      this->data[2][0]*_v[0] + this->data[2][1]*_v[1] + this->data[2][2]*_v[2]);
+}
+
+//////////////////////////////////////////////////
 IGN_MATRIX3 IGN_MATRIX3::operator*(const IGN_MATRIX3 &_m) const
 {
   return IGN_MATRIX3(

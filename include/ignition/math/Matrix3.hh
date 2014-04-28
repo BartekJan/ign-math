@@ -47,8 +47,8 @@ class IGN_MATRIX3
   /// \param[in] _v21 Row 2, Col 1 value
   /// \param[in] _v22 Row 2, Col 2 value
   public: IGN_MATRIX3(IGN_NUMERIC _v00, IGN_NUMERIC _v01, IGN_NUMERIC _v02,
-                  IGN_NUMERIC _v10, IGN_NUMERIC _v11, IGN_NUMERIC _v12,
-                  IGN_NUMERIC _v20, IGN_NUMERIC _v21, IGN_NUMERIC _v22);
+                      IGN_NUMERIC _v10, IGN_NUMERIC _v11, IGN_NUMERIC _v12,
+                      IGN_NUMERIC _v20, IGN_NUMERIC _v21, IGN_NUMERIC _v22);
 
   /// \brief Desctructor
   public: virtual ~IGN_MATRIX3();
@@ -64,8 +64,8 @@ class IGN_MATRIX3
   /// \param[in] _v21 Row 2, Col 1 value
   /// \param[in] _v22 Row 2, Col 2 value
   public: void Set(IGN_NUMERIC _v00, IGN_NUMERIC _v01, IGN_NUMERIC _v02,
-                  IGN_NUMERIC _v10, IGN_NUMERIC _v11, IGN_NUMERIC _v12,
-                  IGN_NUMERIC _v20, IGN_NUMERIC _v21, IGN_NUMERIC _v22);
+                   IGN_NUMERIC _v10, IGN_NUMERIC _v11, IGN_NUMERIC _v12,
+                   IGN_NUMERIC _v20, IGN_NUMERIC _v21, IGN_NUMERIC _v22);
 
   /// \brief Set the matrix from three axis (1 per column)
   /// \param[in] _xAxis The x axis
@@ -93,6 +93,16 @@ class IGN_MATRIX3
 
   /// \brief returns the element wise scalar multiplication
   public: IGN_MATRIX3 operator*(const IGN_NUMERIC &_s) const;
+
+  /// \brief element wise scalar left multiplication
+  public: friend inline IGN_MATRIX3 operator*(const IGN_NUMERIC &_s,
+                                              const IGN_MATRIX3 &_m)
+          { return _m * _s; }
+
+  /// \brief Matrix right-multiplication with column vector
+  /// \param[in] _v IGN_VECTOR3 to multiply
+  /// \return vector: this * _v
+  public: IGN_VECTOR3 operator*(const IGN_VECTOR3 &_v) const;
 
   /// \brief Matrix multiplication operator
   /// \param[in] _m IGN_MATRIX3 to multiply
