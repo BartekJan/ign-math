@@ -121,34 +121,82 @@ TEST(Matrix3dTest, OperatorAdd)
 /////////////////////////////////////////////////
 TEST(Matrix3dTest, OperatorMul)
 {
-  math::Matrix3d matZero = math::Matrix3d::Zero;
-  math::Matrix3d matIdent = math::Matrix3d::Identity;
+  {
+    // Multiply arbitrary matrix by zeros of different sizes
+    math::Matrix3d matrix(0.1, 0.2, 0.3,
+                          0.4, 0.5, 0.6,
+                          0.7, 0.8, 0.9);
 
-  math::Matrix3d mat = matIdent * matZero;
-  EXPECT_EQ(mat, matZero);
+    // Scalar 0
+    EXPECT_EQ(math::Matrix3d::Zero, matrix * 0.0);
+    EXPECT_EQ(math::Matrix3d::Zero, 0.0 * matrix);
 
-  math::Matrix3d matA(1, 2, 3,
-                      4, 5, 6,
-                      7, 8, 9);
+    // Vector3d::Zero
+    EXPECT_EQ(math::Vector3d::Zero, matrix * math::Vector3d::Zero);
+    // left multiply with Vector3 not implemented
 
-  math::Matrix3d matB(10, 20, 30,
-                      40, 50, 60,
-                      70, 80, 90);
+    // Matrix3d::Zero
+    EXPECT_EQ(math::Matrix3d::Zero, matrix * math::Matrix3d::Zero);
+    EXPECT_EQ(math::Matrix3d::Zero, math::Matrix3d::Zero * matrix);
+  }
 
-  mat = matA * matB;
-  EXPECT_EQ(mat, math::Matrix3d(300, 360, 420,
-                                660, 810, 960,
-                                1020, 1260, 1500));
+  {
+    // Multiply arbitrary matrix by identity values
+    math::Matrix3d matrix(0.1, 0.2, 0.3,
+                          0.4, 0.5, 0.6,
+                          0.7, 0.8, 0.9);
 
-  mat = matB * matA;
-  EXPECT_EQ(mat, math::Matrix3d(300, 360, 420,
-                                660, 810, 960,
-                                1020, 1260, 1500));
+    // scalar 1.0
+    EXPECT_EQ(matrix, matrix * 1.0);
+    EXPECT_EQ(matrix, 1.0 * matrix);
 
-  mat = mat * 2.0;
-  EXPECT_EQ(mat, math::Matrix3d(600, 720, 840,
-                                1320, 1620, 1920,
-                                2040, 2520, 3000));
+    // Vector3d::Unit[X|Y|Z]
+    EXPECT_EQ(math::Vector3d(matrix(0, 0), matrix(1, 0), matrix(2, 0)),
+              matrix * math::Vector3d::UnitX);
+    EXPECT_EQ(math::Vector3d(matrix(0, 1), matrix(1, 1), matrix(2, 1)),
+              matrix * math::Vector3d::UnitY);
+    EXPECT_EQ(math::Vector3d(matrix(0, 2), matrix(1, 2), matrix(2, 2)),
+              matrix * math::Vector3d::UnitZ);
+
+    // Matrix3d::Identity
+    EXPECT_EQ(matrix, matrix * math::Matrix3d::Identity);
+    EXPECT_EQ(matrix, math::Matrix3d::Identity * matrix);
+  }
+
+  {
+    // Multiply with non-zero and non-identity values
+    math::Matrix3d matrix(0.1, 0.2, 0.3,
+                          0.4, 0.5, 0.6,
+                          0.7, 0.8, 0.9);
+
+    // Scalar 2.5
+    EXPECT_EQ(matrix * 2.5, math::Matrix3d(0.25, 0.50, 0.75,
+                                           1.00, 1.25, 1.50,
+                                           1.75, 2.00, 2.25));
+    EXPECT_EQ(2.5 * matrix, math::Matrix3d(0.25, 0.50, 0.75,
+                                           1.00, 1.25, 1.50,
+                                           1.75, 2.00, 2.25));
+
+    // Vector {9.4, -3, 0.3}
+    EXPECT_EQ(math::Vector3d(0.43, 2.44, 4.45),
+              matrix * math::Vector3d(9.4, -3.0, 0.3));
+
+    // Multiply with itself
+    EXPECT_EQ(matrix*matrix, math::Matrix3d(0.30, 0.36, 0.42,
+                                            0.66, 0.81, 0.96,
+                                            1.02, 1.26, 1.50));
+
+    // Multiply with other matrix
+    math::Matrix3d matrix2(9, -6, 3,
+                           8, -5, 2,
+                           7, -4, 1);
+    EXPECT_EQ(matrix*matrix2, math::Matrix3d(4.6,  -2.8, 1.0,
+                                            11.8,  -7.3, 2.8,
+                                            19.0, -11.8, 4.6));
+    EXPECT_EQ(matrix2*matrix, math::Matrix3d(0.6, 1.2, 1.8,
+                                             0.2, 0.7, 1.2,
+                                            -0.2, 0.2, 0.6));
+  }
 }
 
 /////////////////////////////////////////////////
