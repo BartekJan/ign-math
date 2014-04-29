@@ -239,6 +239,14 @@ class IGN_VECTOR3
                                this->data[2] * _s);
           }
 
+  /// \brief Left multiplication operators
+  /// \param[in] _s the scaling factor
+  /// \param[in] _v the vector to scale
+  /// \return a scaled vector
+  public: friend inline IGN_VECTOR3 operator*(IGN_NUMERIC _s,
+                                              const IGN_VECTOR3 &_v)
+          { return IGN_VECTOR3(_v * _s); }
+
   /// \brief Multiplication operator
   /// \param[in] _v scaling factor
   /// \return this

@@ -146,6 +146,14 @@ class IGN_VECTOR4
   /// \return a  scaled vector
   public: const IGN_VECTOR4 operator*(IGN_NUMERIC _v) const;
 
+  /// \brief Left multiplication operators
+  /// \param[in] _s scaling factor
+  /// \param[in] _v vector to scale
+  /// \return a scaled vector
+  public: friend inline const IGN_VECTOR4 operator*(IGN_NUMERIC _s,
+          const IGN_VECTOR4 &_v)
+          { return _v * _s; }
+
   /// \brief Multiplication assignment operator
   /// \param[in] _v scaling factor
   /// \return this

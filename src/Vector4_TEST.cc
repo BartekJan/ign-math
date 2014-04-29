@@ -122,6 +122,13 @@ TEST(Vector4dTest, Vector4d)
   v = v * 5.2;
   EXPECT_TRUE(v == math::Vector4d(4971.2, 16598.4, 36566.4, 66560));
 
+  {
+    // ::operator * double
+    math::Vector4d v2(956, 3192, 7032, 12800);
+    v2 = 5.2 * v2;
+    EXPECT_EQ(v2, math::Vector4d(4971.2, 16598.4, 36566.4, 66560));
+  }
+
   // ::operator *= double
   v *= 10.0;
   EXPECT_TRUE(v == math::Vector4d(49712, 1.65984e+05, 3.65664e+05, 6.656e+05));

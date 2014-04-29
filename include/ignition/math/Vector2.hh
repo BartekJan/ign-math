@@ -123,6 +123,14 @@ class IGN_VECTOR2
   /// \return a scaled vector
   public: const IGN_VECTOR2 operator*(IGN_NUMERIC _v) const;
 
+  /// \brief Scalar left multiplication operators
+  /// \param[in] _s the scaling factor
+  /// \param[in] _v the vector to scale
+  /// \return a scaled vector
+  public: friend inline const IGN_VECTOR2 operator*(IGN_NUMERIC _s,
+    const IGN_VECTOR2 &_v)
+    { return IGN_VECTOR2(_v * _s); }
+
   /// \brief Multiplication assignment operator
   /// \param[in] _v the scaling factor
   /// \return a scaled vector

@@ -63,6 +63,14 @@ TEST(Vector3Test, Vector3d)
   v = v * math::Vector3d(2, 3, 4);
   EXPECT_TRUE(v == math::Vector3d(4, 3, 2));
 
+  // ::operator scalar * vector
+  {
+    math::Vector3d v2;
+    v2.Set(10, 6, 1.5);
+    v2 = 2 * v2;
+    EXPECT_TRUE(v2 == math::Vector3d(20, 12, 3.0));
+  }
+
   // ::operator[]
   EXPECT_DOUBLE_EQ(v[0], 4);
   EXPECT_DOUBLE_EQ(v[1], 3);
