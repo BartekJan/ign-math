@@ -97,6 +97,11 @@ TEST(Vector2Test, Vector2)
   v = v * 2;
   EXPECT_TRUE(v == math::Vector2d(20, 12));
 
+  // ::operator int * vector
+  v.Set(10, 6);
+  v = 2 * v;
+  EXPECT_TRUE(v == math::Vector2d(20, 12));
+
   // ::operator *= int
   v.Set(10, 6);
   v *= 2;
