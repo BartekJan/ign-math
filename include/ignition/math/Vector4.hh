@@ -19,8 +19,6 @@
 IGN_VECTOR4f.hh, or IGN_VECTOR4i.hh.
 #endif
 
-class IGN_MATRIX4;
-
 /// \class Vector4 Vector4.hh ignitino/math.hh
 /// \brief IGN_NUMERIC Generic x, y, z, w vector
 class IGN_VECTOR4
@@ -128,11 +126,6 @@ class IGN_VECTOR4
   /// \param[in] _pt another vector
   /// \return result vector
   public: const IGN_VECTOR4 operator*(const IGN_VECTOR4 &_pt) const;
-
-  /// \brief Matrix multiplication operator.
-  /// \param[in] _m matrix
-  /// \return the vector multiplied by _m
-  public: const IGN_VECTOR4 operator*(const IGN_MATRIX4 &_m) const;
 
   /// \brief Multiplication assignment operator
   /// \remarks Performs element wise multiplication,

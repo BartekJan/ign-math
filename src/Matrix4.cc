@@ -404,6 +404,19 @@ IGN_VECTOR3 IGN_MATRIX4::operator*(const IGN_VECTOR3 &_vec) const
 }
 
 //////////////////////////////////////////////////
+IGN_VECTOR4 IGN_MATRIX4::operator*(const IGN_VECTOR4 &_v) const
+{
+  return IGN_VECTOR4(this->data[0][0]*_v.x() + this->data[0][1]*_v.y() +
+                     this->data[0][2]*_v.z() + this->data[0][3]*_v.w(),
+                     this->data[1][0]*_v.x() + this->data[1][1]*_v.y() +
+                     this->data[1][2]*_v.z() + this->data[1][3]*_v.w(),
+                     this->data[2][0]*_v.x() + this->data[2][1]*_v.y() +
+                     this->data[2][2]*_v.z() + this->data[2][3]*_v.w(),
+                     this->data[3][0]*_v.x() + this->data[3][1]*_v.y() +
+                     this->data[3][2]*_v.z() + this->data[3][3]*_v.w());
+}
+
+//////////////////////////////////////////////////
 bool IGN_MATRIX4::IsAffine() const
 {
   return equal(this->data[3][0], static_cast<IGN_NUMERIC>(0)) &&

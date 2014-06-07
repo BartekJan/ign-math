@@ -103,12 +103,14 @@ TEST(Vector4dTest, Vector4d)
   EXPECT_TRUE(v == math::Vector4d(30, 55, 80, 105));
 
   // ::operator * matrix4
-  v = v * math::Matrix4d(1, 2, 3, 4,
-                        5, 6, 7, 8,
-                        9, 10, 11, 12,
-                        13, 14, 15, 16);
-  EXPECT_TRUE(v == math::Vector4d(2390, 2660, 2930, 3200));
-
+  {
+    math::Matrix4d mat(1,  2,  3,  4,
+                       5,  6,  7,  8,
+                       9, 10, 11, 12,
+                      13, 14, 15, 16);
+    v = mat * v;
+    EXPECT_TRUE(v == math::Vector4d(2390, 2660, 2930, 3200));
+  }
 
   // ::operator * vector4
   v = v * math::Vector4d(.2, .3, .4, .5);
