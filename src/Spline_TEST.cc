@@ -44,9 +44,9 @@ TEST(SplineTest, Spline)
   s.SetAutoCalculate(true);
 
   // ::Interpolate
-  EXPECT_TRUE(s.Interpolate(0.5) == math::Vector3d(0.5, 0.5, 0.5));
+  EXPECT_EQ(s.Interpolate(0.5), math::Vector3d(0.5, 0.5, 0.5));
 
   // ::Interpolate
   s.AddPoint(math::Vector3d(4, 4, 4));
-  EXPECT_TRUE(s.Interpolate(1, 0.2) == math::Vector3d(2.496, 2.496, 2.496));
+  EXPECT_EQ(s.Interpolate(1, 0.2), math::Vector3d(2.496, 2.496, 2.496));
 }

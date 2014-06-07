@@ -17,6 +17,7 @@
 #include "ignition/math/Matrix4d.hh"
 #include "ignition/math/Helpers.hh"
 #include "ignition/math/Vector3d.hh"
+#include "ignition/math/Vector4d.hh"
 #include "ignition/math/Matrix3d.hh"
 #include "ignition/math/Quaterniond.hh"
 #include "ignition/math/Pose3d.hh"

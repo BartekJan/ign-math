@@ -152,7 +152,7 @@ Vector3d Spline::Interpolate(unsigned int _fromIndex, double _t) const
   pt(3, 2) = tan2.z();
   pt(3, 3) = 1.0f;
 
-  Vector4d ret = powers * this->coeffs * pt;
+  Vector4d ret = this->coeffs * pt * powers;
 
   return Vector3d(ret.x(), ret.y(), ret.z());
 }

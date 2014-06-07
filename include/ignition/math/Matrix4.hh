@@ -21,6 +21,7 @@ IGN_MATRIX4f.hh, or IGN_MATRIX4i.hh.
 
 class IGN_MATRIX3;
 class IGN_VECTOR3;
+class IGN_VECTOR4;
 class IGN_POSE3;
 class IGN_QUATERNION;
 
@@ -172,6 +173,11 @@ class IGN_MATRIX4
   /// \param _vec Vector3
   /// \return Resulting vector from multiplication
   public: IGN_VECTOR3 operator*(const IGN_VECTOR3 &_vec) const;
+
+  /// \brief Multiplication operator
+  /// \param _v Vector4
+  /// \return Resulting vector from multiplication
+  public: IGN_VECTOR4 operator*(const IGN_VECTOR4 &_v) const;
 
   /// \brief Get the value at the specified row, column index
   /// \param[in] _col The column index

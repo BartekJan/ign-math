@@ -17,6 +17,7 @@
 #include "ignition/math/Matrix4i.hh"
 #include "ignition/math/Helpers.hh"
 #include "ignition/math/Vector3i.hh"
+#include "ignition/math/Vector4i.hh"
 #include "ignition/math/Matrix3i.hh"
 #include "ignition/math/Quaternioni.hh"
 #include "ignition/math/Pose3i.hh"
