@@ -13,6 +13,7 @@ set (sources
 set (gtest_sources
   Angle_TEST.cc
   Box_TEST.cc
+  Filter_TEST.cc
   Helpers_TEST.cc
   Line2_TEST.cc
   Matrix3_TEST.cc
@@ -23,6 +24,7 @@ set (gtest_sources
   Rand_TEST.cc
   RotationSpline_TEST.cc
   Spline_TEST.cc
+  Triangle_TEST.cc
   Vector2_TEST.cc
   Vector3_TEST.cc
   Vector4_TEST.cc
