@@ -4,6 +4,7 @@ set (headers
   AffineException.hh
   Angle.hh
   Box.hh
+  Filter.hh
   Helpers.hh
   IndexException.hh
   Line2.hh
@@ -15,6 +16,7 @@ set (headers
   Rand.hh
   RotationSpline.hh
   Spline.hh
+  Triangle.hh
   Vector2.hh
   Vector3.hh
   Vector4.hh
