@@ -53,35 +53,35 @@ Box::~Box()
 }
 
 //////////////////////////////////////////////////
-double Box::GetXLength() const
+double Box::XLength() const
 {
-  return std::abs(max.x() - min.x());
+  return std::abs(max.X() - min.X());
 }
 
 //////////////////////////////////////////////////
-double Box::GetYLength() const
+double Box::YLength() const
 {
-  return std::abs(max.y() - min.y());
+  return std::abs(max.Y() - min.Y());
 }
 
 //////////////////////////////////////////////////
-double Box::GetZLength() const
+double Box::ZLength() const
 {
-  return std::abs(max.z() - min.z());
+  return std::abs(max.Z() - min.Z());
 }
 
 //////////////////////////////////////////////////
-math::Vector3d Box::GetSize() const
+math::Vector3d Box::Size() const
 {
-  return math::Vector3d(this->GetXLength(),
-                       this->GetYLength(),
-                       this->GetZLength());
+  return math::Vector3d(this->XLength(),
+                        this->YLength(),
+                        this->ZLength());
 }
 
 //////////////////////////////////////////////////
-math::Vector3d Box::GetCenter() const
+math::Vector3d Box::Center() const
 {
-  Vector3d size = this->GetSize();
+  Vector3d size = this->Size();
   size /= 2.0;
   return this->min + size;
 }
@@ -98,8 +98,8 @@ void Box::Merge(const Box &_box)
   }
   else
   {
-    this->min.SetToMin(_box.min);
-    this->max.SetToMax(_box.max);
+    this->min.Min(_box.min);
+    this->max.Max(_box.max);
   }
 }
 
@@ -123,8 +123,8 @@ Box Box::operator+(const Box &_b) const
     mn = this->min;
     mx = this->max;
 
-    mn.SetToMin(_b.min);
-    mx.SetToMax(_b.max);
+    mn.Min(_b.min);
+    mx.Max(_b.max);
   }
   else
   {
@@ -140,8 +140,8 @@ const Box &Box::operator+=(const Box &_b)
 {
   if (this->extent != EXTENT_NULL)
   {
-    this->min.SetToMin(_b.min);
-    this->max.SetToMax(_b.max);
+    this->min.Min(_b.min);
+    this->max.Max(_b.max);
   }
   else
   {
@@ -153,7 +153,7 @@ const Box &Box::operator+=(const Box &_b)
 }
 
 //////////////////////////////////////////////////
-bool Box::operator==(const Box &_b)
+bool Box::operator==(const Box &_b) const
 {
   return this->min == _b.min && this->max == _b.max;
 }
