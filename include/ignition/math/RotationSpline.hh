@@ -42,11 +42,11 @@ namespace ignition
       /// \param[in] _index the index of the control point.
       /// \remarks This point must already exist in the spline.
       /// \return a quaternion (out of bound index result in assertion)
-      public: const Quaterniond &GetPoint(unsigned int _index) const;
+      public: const Quaterniond &Point(unsigned int _index) const;
 
       /// \brief Gets the number of control points in the spline.
       /// \return the count
-      public: unsigned int GetNumPoints() const;
+      public: unsigned int PointCount() const;
 
       /// \brief Clears all the points in the spline.
       public: void Clear();
@@ -93,7 +93,7 @@ namespace ignition
       /// \param[in] _autoCalc If true, tangents are calculated for you
       /// whenever a point changes. If false, you must call reclacTangents to
       /// recalculate them when it best suits.
-      public: void SetAutoCalculate(bool _autoCalc);
+      public: void AutoCalculate(bool _autoCalc);
 
       /// \brief Recalculates the tangents associated with this spline.
       /// \remarks If you tell the spline not to update on demand by calling
