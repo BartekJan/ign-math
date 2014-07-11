@@ -18,6 +18,7 @@
 #ifndef _IGNITION_FILTER_HH_
 #define _IGNITION_FILTER_HH_
 
+#include <ignition/math/Helpers.hh>
 #include <ignition/math/Vector3.hh>
 #include <ignition/math/Quaternion.hh>
 
@@ -28,23 +29,29 @@ namespace ignition
     /// \class Filter Filter.hh ignition/math/Filter.hh
     /// \brief Filter base class
     template <class T>
-    class IGNITION_VISIBLE Filter
+    class Filter
     {
       /// \brief Destructor.
       public: virtual ~Filter() {}
 
       /// \brief Set the output of the filter.
       /// \param[in] _val New value.
-      public: virtual void SetValue(const T &_val) { y0 = _val; }
+      public: virtual void Set(const T &_val)
+      {
+        y0 = _val;
+      }
 
       /// \brief Set the cutoff frequency and sample rate.
       /// \param[in] _fc Cutoff frequency.
       /// \param[in] _fs Sample rate.
-      public: virtual void SetFc(double _fc, double _fs) = 0;
+      public: virtual void Fc(double _fc, double _fs) = 0;
 
       /// \brief Get the output of the filter.
       /// \return Filter's output.
-      public: inline virtual const T& GetValue() { return y0; }
+      public: virtual const T &Value() const
+      {
+        return y0;
+      }
 
       /// \brief Output.
       protected: T y0;
@@ -54,7 +61,7 @@ namespace ignition
     /// \brief A one-pole DSP filter.
     /// \sa http://www.earlevel.com/main/2012/12/15/a-one-pole-filter/
     template <class T>
-    class IGNITION_VISIBLE OnePole : public Filter<T>
+    class OnePole : public Filter<T>
     {
       /// \brief Constructor.
       public: OnePole() = default;
@@ -64,13 +71,13 @@ namespace ignition
       /// \param[in] _fs Sample rate.
       public: OnePole(double _fc, double _fs)
       {
-        this->SetFc(_fc, _fs);
+        this->Fc(_fc, _fs);
       }
 
       // Documentation Inherited.
-      public: virtual void SetFc(double _fc, double _fs)
+      public: virtual void Fc(double _fc, double _fs)
       {
-        b1 = exp(-2.0 * M_PI * _fc / _fs);
+        b1 = exp(-2.0 * IGN_PI * _fc / _fs);
         a0 = 1.0 - b1;
       }
 
@@ -92,12 +99,12 @@ namespace ignition
 
     /// \class OnePoleQuaternion Filter.hh ignition/math/Filter.hh
     /// \brief One-pole quaternion filter.
-    class IGNITION_VISIBLE OnePoleQuaternion : public OnePole<math::Quaterniond>
+    class OnePoleQuaternion : public OnePole<math::Quaterniond>
     {
       /// \brief Constructor.
       public: OnePoleQuaternion()
       {
-        this->SetValue(math::Quaterniond(1, 0, 0, 0));
+        this->Set(math::Quaterniond(1, 0, 0, 0));
       }
 
       /// \brief Constructor.
@@ -106,7 +113,7 @@ namespace ignition
       public: OnePoleQuaternion(double _fc, double _fs)
         : OnePole<math::Quaterniond>(_fc, _fs)
       {
-        this->SetValue(math::Quaterniond(1, 0, 0, 0));
+        this->Set(math::Quaterniond(1, 0, 0, 0));
       }
 
       /// \brief Update the filter's output.
@@ -122,12 +129,12 @@ namespace ignition
 
     /// \class OnePoleVector3 Filter.hh ignition/math/Filter.hh
     /// \brief One-pole vector3 filter.
-    class IGNITION_VISIBLE OnePoleVector3 : public OnePole<math::Vector3d>
+    class OnePoleVector3 : public OnePole<math::Vector3d>
     {
       /// \brief Constructor.
       public: OnePoleVector3()
       {
-        this->SetValue(math::Vector3d(0, 0, 0));
+        this->Set(math::Vector3d(0, 0, 0));
       }
 
       /// \brief Constructor.
@@ -136,7 +143,7 @@ namespace ignition
       public: OnePoleVector3(double _fc, double _fs)
         : OnePole<math::Vector3d>(_fc, _fs)
       {
-        this->SetValue(math::Vector3d(0, 0, 0));
+        this->Set(math::Vector3d(0, 0, 0));
       }
     };
 
@@ -144,7 +151,7 @@ namespace ignition
     /// \brief Bi-quad filter base class.
     /// \sa http://www.earlevel.com/main/2003/03/02/the-bilinear-z-transform/
     template <class T>
-    class IGNITION_VISIBLE BiQuad : public Filter<T>
+    class BiQuad : public Filter<T>
     {
       /// \brief Constructor.
       public: BiQuad() = default;
@@ -154,22 +161,22 @@ namespace ignition
       /// \param[in] _fs Sample rate.
       public: BiQuad(double _fc, double _fs)
       {
-        this->SetFc(_fc, _fs);
+        this->Fc(_fc, _fs);
       }
 
       // Documentation Inherited.
-      public: inline void SetFc(double _fc, double _fs)
+      public: inline void Fc(double _fc, double _fs)
       {
-        this->SetFc(_fc, _fs, 0.5);
+        this->Fc(_fc, _fs, 0.5);
       }
 
       /// \brief Set the cutoff frequency, sample rate and Q coefficient.
       /// \param[in] _fc Cutoff frequency.
       /// \param[in] _fs Sample rate.
       /// \param[in] _q Q coefficient.
-      public: inline void SetFc(double _fc, double _fs, double _q)
+      public: inline void Fc(double _fc, double _fs, double _q)
       {
-        double k = tan(M_PI * _fc / _fs);
+        double k = tan(IGN_PI * _fc / _fs);
         double kQuadDenom = k * k + k / _q + 1.0;
         this->a0 = k * k/ kQuadDenom;
         this->a1 = 2 * this->a0;
@@ -181,7 +188,7 @@ namespace ignition
 
       /// \brief Set the current filter's output.
       /// \param[in] _val New filter's output.
-      public: virtual void SetValue(const T &_val)
+      public: virtual void Set(const T &_val)
       {
         this->y0 = this->y1 = this->y2 = this->x1 = this->x2 = _val;
       }
@@ -213,12 +220,12 @@ namespace ignition
 
     /// \class BiQuadVector3 Filter.hh ignition/math/Filter.hh
     /// \brief BiQuad vector3 filter
-    class IGNITION_VISIBLE BiQuadVector3 : public BiQuad<math::Vector3d>
+    class BiQuadVector3 : public BiQuad<math::Vector3d>
     {
       /// \brief Constructor.
       public: BiQuadVector3()
       {
-        this->SetValue(math::Vector3d(0, 0, 0));
+        this->Set(math::Vector3d(0, 0, 0));
       }
 
       /// \brief Constructor.
@@ -227,7 +234,7 @@ namespace ignition
       public: BiQuadVector3(double _fc, double _fs)
         : BiQuad<math::Vector3d>(_fc, _fs)
       {
-        this->SetValue(math::Vector3d(0, 0, 0));
+        this->Set(math::Vector3d(0, 0, 0));
       }
     };
   }

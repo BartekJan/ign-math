@@ -17,20 +17,18 @@
 #ifndef _IGNITION_ANGLE_HH_
 #define _IGNITION_ANGLE_HH_
 
-#define _USE_MATH_DEFINES
-#include <cmath>
 #include <iostream>
 #include <ignition/math/Helpers.hh>
 
 /// \brief Macro that converts radians to degrees
 /// \param[in] radians
 /// \return degrees
-#define IGN_RTOD(r) ((r) * 180 / M_PI)
+#define IGN_RTOD(r) ((r) * 180 / IGN_PI)
 
 /// \brief Converts degrees to radians
 /// \param[in] degrees
 /// \return radians
-#define IGN_DTOR(d) ((d) * M_PI / 180)
+#define IGN_DTOR(d) ((d) * IGN_PI / 180)
 
 /// \brief Macro tha normalizes an angle in the range -Pi to Pi
 /// \param[in] angle
@@ -48,13 +46,13 @@ namespace ignition
       /// \brief math::Angle(0)
       public: static const Angle Zero;
 
-      /// \brief math::Angle(M_PI)
+      /// \brief math::Angle(IGN_PI)
       public: static const Angle Pi;
 
-      /// \brief math::Angle(M_PI * 0.5)
+      /// \brief math::Angle(IGN_PI * 0.5)
       public: static const Angle HalfPi;
 
-      /// \brief math::Angle(M_PI * 2)
+      /// \brief math::Angle(IGN_PI * 2)
       public: static const Angle TwoPi;
 
       /// \brief Constructor
@@ -73,11 +71,11 @@ namespace ignition
 
       /// \brief Set the value from an angle in radians
       /// \param[in] _radian Radian value
-      public: void SetFromRadian(double _radian);
+      public: void Radian(double _radian);
 
       /// \brief Set the value from an angle in degrees
       /// \param[in] _degree Degree value
-      public: void SetFromDegree(double _degree);
+      public: void Degree(double _degree);
 
       /// \brief Get the angle in radians
       /// \return double containing the angle's radian value
