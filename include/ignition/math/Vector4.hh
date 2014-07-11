@@ -78,7 +78,7 @@ namespace ignition
       }
 
       /// \brief Returns the length (magnitude) of the vector
-      public: T GetLength() const
+      public: T Length() const
       {
         return sqrt(
             this->data[0] * this->data[0] +
@@ -89,7 +89,7 @@ namespace ignition
 
       /// \brief Return the square of the length (magnitude) of the vector
       /// \return the length
-      public: T GetSquaredLength() const
+      public: T SquaredLength() const
       {
         return this->data[0] * this->data[0] + this->data[1] * this->data[1] +
           this->data[2] * this->data[2] + this->data[3] * this->data[3];
@@ -98,7 +98,7 @@ namespace ignition
       /// \brief Normalize the vector length
       public: void Normalize()
       {
-        T d = this->GetLength();
+        T d = this->Length();
 
         this->data[0] /= d;
         this->data[1] /= d;
@@ -354,28 +354,28 @@ namespace ignition
 
       /// \brief Get the x value.
       /// \return The x component of the vector
-      public: inline T x() const
+      public: inline T X() const
       {
         return this->data[0];
       }
 
       /// \brief Get the y value.
       /// \return The y component of the vector
-      public: inline T y() const
+      public: inline T Y() const
       {
         return this->data[1];
       }
 
       /// \brief Get the z value.
       /// \return The z component of the vector
-      public: inline T z() const
+      public: inline T Z() const
       {
         return this->data[2];
       }
 
       /// \brief Get the w value.
       /// \return The w component of the vector
-      public: inline T w() const
+      public: inline T W() const
       {
         return this->data[3];
       }
