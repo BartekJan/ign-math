@@ -21,6 +21,7 @@
 #include <ignition/math/AffineException.hh>
 #include <ignition/math/Matrix3.hh>
 #include <ignition/math/Vector3.hh>
+#include <ignition/math/Vector4.hh>
 #include <ignition/math/Pose3.hh>
 
 namespace ignition
@@ -605,6 +606,63 @@ namespace ignition
             this->data[1][2]*_vec.Z() + this->data[1][3],
             this->data[2][0]*_vec.X() + this->data[2][1]*_vec.Y() +
             this->data[2][2]*_vec.Z() + this->data[2][3]);
+      }
+
+      /// \brief Multiplication operator
+      /// \param _vec Vector4
+      /// \return Resulting vector from multiplication
+      public: Vector4<T> operator*(const Vector4<T> &_vec) const
+      {
+        return Vector4<T>(
+            this->data[0][0]*_vec.X() + this->data[0][1]*_vec.Y() +
+            this->data[0][2]*_vec.Z() + this->data[0][3]*_vec.W(),
+            this->data[1][0]*_vec.X() + this->data[1][1]*_vec.Y() +
+            this->data[1][2]*_vec.Z() + this->data[1][3]*_vec.W(),
+            this->data[2][0]*_vec.X() + this->data[2][1]*_vec.Y() +
+            this->data[2][2]*_vec.Z() + this->data[2][3]*_vec.W(),
+            this->data[3][0]*_vec.X() + this->data[3][1]*_vec.Y() +
+            this->data[3][2]*_vec.Z() + this->data[3][3]*_vec.W());
+      }
+
+      /// \brief Matrix left multiplication operator for Vector4.
+      /// \param[in] _v Input vector.
+      /// \param[in] _m Input matrix.
+      /// \return A scaled matrix.
+      public: friend inline Vector4<T> operator*(const Vector4<T> &_v,
+                                                 const Matrix4<T> &_m)
+      {
+        return Vector4<T>(
+            _m(0, 0)*_v.X() + _m(1, 0)*_v.Y() +
+            _m(2, 0)*_v.Z() + _m(3, 0)*_v.W(),
+            _m(0, 1)*_v.X() + _m(1, 1)*_v.Y() +
+            _m(2, 1)*_v.Z() + _m(3, 1)*_v.W(),
+            _m(0, 2)*_v.X() + _m(1, 2)*_v.Y() +
+            _m(2, 2)*_v.Z() + _m(3, 2)*_v.W(),
+            _m(0, 3)*_v.X() + _m(1, 3)*_v.Y() +
+            _m(2, 3)*_v.Z() + _m(3, 3)*_v.W());
+      }
+
+      /// \brief returns the element wise scalar multiplication
+      public: Matrix4<T> operator*(const T &_s) const
+      {
+        return Matrix4<T>(
+          _s * this->data[0][0], _s * this->data[0][1],
+          _s * this->data[0][2], _s * this->data[0][3],
+          _s * this->data[1][0], _s * this->data[1][1],
+          _s * this->data[1][2], _s * this->data[1][3],
+          _s * this->data[2][0], _s * this->data[2][1],
+          _s * this->data[2][2], _s * this->data[2][3],
+          _s * this->data[3][0], _s * this->data[3][1],
+          _s * this->data[3][2], _s * this->data[3][3]);
+      }
+
+      /// \brief Matrix multiplication operator for scaling.
+      /// \param[in] _s Scaling factor.
+      /// \param[in] _m Input matrix.
+      /// \return A scaled matrix.
+      public: friend inline Matrix4<T> operator*(T _s, const Matrix4<T> &_m)
+      {
+        return _m * _s;
       }
 
       /// \brief Get the value at the specified row, column index
