@@ -17,8 +17,6 @@
 #ifndef _IGNITION_VECTOR4_HH_
 #define _IGNITION_VECTOR4_HH_
 
-#include <ignition/math/Matrix4.hh>
-
 namespace ignition
 {
   namespace math
@@ -33,6 +31,18 @@ namespace ignition
 
       /// \brief math::Vector4(1, 1, 1, 1)
       public: static const Vector4<T> One;
+
+      /// \brief math::Vector4(1, 0, 0, 0)
+      public: static const Vector4 UnitX;
+
+      /// \brief math::Vector4(0, 1, 0, 0)
+      public: static const Vector4 UnitY;
+
+      /// \brief math::Vector4(0, 0, 1, 0)
+      public: static const Vector4 UnitZ;
+
+      /// \brief math::Vector4(0, 0, 0, 1)
+      public: static const Vector4 UnitW;
 
       /// \brief Constructor
       public: Vector4()
@@ -257,22 +267,6 @@ namespace ignition
                           this->data[3] * _pt[3]);
       }
 
-      /// \brief Matrix multiplication operator.
-      /// \param[in] _m matrix
-      /// \return the vector multiplied by _m
-      public: const Vector4<T> operator*(const Matrix4<T> &_m) const
-      {
-        return Vector4<T>(
-            this->data[0]*_m(0, 0) + this->data[1]*_m(1, 0) +
-            this->data[2]*_m(2, 0) + this->data[3]*_m(3, 0),
-            this->data[0]*_m(0, 1) + this->data[1]*_m(1, 1) +
-            this->data[2]*_m(2, 1) + this->data[3]*_m(3, 1),
-            this->data[0]*_m(0, 2) + this->data[1]*_m(1, 2) +
-            this->data[2]*_m(2, 2) + this->data[3]*_m(3, 2),
-            this->data[0]*_m(0, 3) + this->data[1]*_m(1, 3) +
-            this->data[2]*_m(2, 3) + this->data[3]*_m(3, 3));
-      }
-
       /// \brief Multiplication assignment operator
       /// \remarks Performs element wise multiplication,
       /// which has limited use.
@@ -448,11 +442,12 @@ namespace ignition
       private: T data[4];
     };
 
-    template<typename T>
-    const Vector4<T> Vector4<T>::Zero(0, 0, 0, 0);
-
-    template<typename T>
-    const Vector4<T> Vector4<T>::One(1, 1, 1, 1);
+    template<typename T> const Vector4<T> Vector4<T>::Zero(0, 0, 0, 0);
+    template<typename T> const Vector4<T> Vector4<T>::One(1, 1, 1, 1);
+    template<typename T> const Vector4<T> Vector4<T>::UnitX(1, 0, 0, 0);
+    template<typename T> const Vector4<T> Vector4<T>::UnitY(0, 1, 0, 0);
+    template<typename T> const Vector4<T> Vector4<T>::UnitZ(0, 0, 1, 0);
+    template<typename T> const Vector4<T> Vector4<T>::UnitW(0, 0, 0, 1);
 
     typedef Vector4<int> Vector4i;
     typedef Vector4<double> Vector4d;

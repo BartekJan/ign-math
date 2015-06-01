@@ -157,6 +157,82 @@ TEST(Matrix4dTest, Multiply4)
 }
 
 /////////////////////////////////////////////////
+TEST(Matrix4dTest, Vector4Multiplication)
+{
+  {
+    // Multiply arbitrary matrix by zeros of different sizes
+    math::Matrix4d matrix(1, 2, 3, 4, 5, 6, 7, 8,
+      9, -1.0, -1.1, -1.2, -1.3, -1.4, -1.5, -1.6);
+
+    // Scalar 0
+    EXPECT_EQ(math::Matrix4d::Zero, matrix * 0);
+    EXPECT_EQ(math::Matrix4d::Zero, 0 * matrix);
+
+    // Vector4::Zero
+    EXPECT_EQ(math::Vector4d::Zero, matrix * math::Vector4d::Zero);
+    EXPECT_EQ(math::Vector4d::Zero, math::Vector4d::Zero * matrix);
+
+    // Matrix4::Zero
+    EXPECT_EQ(math::Matrix4d::Zero, matrix * math::Matrix4d::Zero);
+    EXPECT_EQ(math::Matrix4d::Zero, math::Matrix4d::Zero * matrix);
+  }
+
+  {
+    // Multiply arbitrary matrix by identity values
+    math::Matrix4d matrix(1, 2, 3, 4, 5, 6, 7, 8,
+      9, -1.0, -1.1, -1.2, -1.3, -1.4, -1.5, -1.6);
+
+    // scalar 1.0
+    EXPECT_EQ(matrix, matrix * 1.0);
+    EXPECT_EQ(matrix, 1.0 * matrix);
+
+    // Vector4::Unit[X|Y|Z]
+    // right multiply
+    EXPECT_EQ(
+      math::Vector4d(matrix(0, 0), matrix(1, 0), matrix(2, 0), matrix(3, 0)),
+      matrix * math::Vector4d::UnitX);
+    EXPECT_EQ(
+      math::Vector4d(matrix(0, 1), matrix(1, 1), matrix(2, 1), matrix(3, 1)),
+      matrix * math::Vector4d::UnitY);
+    EXPECT_EQ(
+      math::Vector4d(matrix(0, 2), matrix(1, 2), matrix(2, 2), matrix(3, 2)),
+      matrix * math::Vector4d::UnitZ);
+    EXPECT_EQ(
+      math::Vector4d(matrix(0, 3), matrix(1, 3), matrix(2, 3), matrix(3, 3)),
+      matrix * math::Vector4d::UnitW);
+    // left multiply
+    EXPECT_EQ(
+      math::Vector4d(matrix(0, 0), matrix(0, 1), matrix(0, 2), matrix(0, 3)),
+      math::Vector4d::UnitX * matrix);
+    EXPECT_EQ(
+      math::Vector4d(matrix(1, 0), matrix(1, 1), matrix(1, 2), matrix(1, 3)),
+      math::Vector4d::UnitY * matrix);
+    EXPECT_EQ(
+      math::Vector4d(matrix(2, 0), matrix(2, 1), matrix(2, 2), matrix(2, 3)),
+      math::Vector4d::UnitZ * matrix);
+    EXPECT_EQ(
+      math::Vector4d(matrix(3, 0), matrix(3, 1), matrix(3, 2), matrix(3, 3)),
+      math::Vector4d::UnitW * matrix);
+
+    // Matrix4::IDENTITY
+    EXPECT_EQ(matrix, matrix * math::Matrix4d::Identity);
+    EXPECT_EQ(matrix, math::Matrix4d::Identity * matrix);
+  }
+
+  {
+    // Multiply arbitrary matrix by itself
+    math::Matrix4d matrix(1, 2, 3, 4, 5, 6, 7, 8,
+      9, -1.0, -1.1, -1.2, -1.3, -1.4, -1.5, -1.6);
+    math::Matrix4d matrix2(32.8, 5.4, 7.7, 10,
+      87.6, 27.8, 37.3, 46.8,
+      -4.34, 14.78, 23.01, 31.24,
+      -19.72, -7.26, -9.65, -12.04);
+
+    EXPECT_EQ(matrix * matrix, matrix2);
+  }
+}
+
+/////////////////////////////////////////////////
 TEST(Matrix4dTest, Inverse)
 {
   math::Matrix4d mat(2, 3, 1, 5,
