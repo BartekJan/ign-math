@@ -5,11 +5,17 @@ set (sources
   Angle.cc
   Box.cc
   BoxPrivate.cc
+  Frame.cc
+  FrameException.cc
+  FrameGraph.cc
+  FrameGraphPrivate.cc
   Frustum.cc
   Helpers.cc
   IndexException.cc
   Kmeans.cc
+  PathPrivate.cc
   Rand.cc
+  RelativePose.cc
   RotationSpline.cc
   RotationSplinePrivate.cc
   SignalStats.cc
@@ -21,6 +27,7 @@ set (gtest_sources
   Angle_TEST.cc
   Box_TEST.cc
   Filter_TEST.cc
+  FrameGraph_TEST.cc
   Frustum_TEST.cc
   Helpers_TEST.cc
   Kmeans_TEST.cc
