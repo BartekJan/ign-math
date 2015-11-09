@@ -195,6 +195,21 @@ namespace ignition
                this->data[2] * _v[2];
       }
 
+      /// \brief Return the absolute dot product of this vector and
+      /// another vector. This is similar to the Dot function, except the
+      /// absolute value of each component of the vector is used.
+      ///
+      /// result = abs(x1 * x2) + abs(y1 * y2) + abs(z1 *z2)
+      ///
+      /// \param[in] _v the vector
+      /// \return The absolute dot product
+      public: T AbsDot(const Vector3<T> &_v) const
+      {
+        return std::abs(this->data[0] * _v[0]) +
+               std::abs(this->data[1] * _v[1]) +
+               std::abs(this->data[2] * _v[2]);
+      }
+
       /// \brief Get the absolute value of the vector
       /// \return a vector with positive elements
       public: Vector3 Abs() const
@@ -232,7 +247,7 @@ namespace ignition
         Vector3<T> a = _v2 - _v1;
         Vector3<T> b = _v3 - _v1;
         Vector3<T> n = a.Cross(b);
-        return n;
+        return n.Normalize();
       }
 
       /// \brief Get distance to a line
@@ -466,8 +481,8 @@ namespace ignition
 
       /// \brief Equal to operator
       /// \param[in] _v The vector to compare against
-      /// \return true if each component is equal withing a
-      /// default tolerence (1e-6), false otherwise
+      /// \return true if each component is equal within a
+      /// default tolerence (1e-3), false otherwise
       public: bool operator==(const Vector3<T> &_v) const
       {
         return equal<T>(this->data[0], _v[0], static_cast<T>(0.001)) &&
@@ -477,8 +492,8 @@ namespace ignition
 
       /// \brief Not equal to operator
       /// \param[in] _v The vector to compare against
-      /// \return true if each component is equal withing a
-      /// default tolerence (1e-6), false otherwise
+      /// \return false if each component is equal within a
+      /// default tolerence (1e-3), true otherwise
       public: bool operator!=(const Vector3<T> &_v) const
       {
         return !(*this == _v);
