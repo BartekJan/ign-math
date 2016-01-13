@@ -315,7 +315,7 @@ TEST(HelpersTest, Volume)
   EXPECT_DOUBLE_EQ(IGN_CYLINDER_VOLUME(0.5, 2.0), 2 * IGN_PI * std::pow(.5, 2));
   EXPECT_DOUBLE_EQ(IGN_CYLINDER_VOLUME(1, -1), -1 * IGN_PI * std::pow(1, 2));
 
-  EXPECT_DOUBLE_EQ(IGN_CUBE_VOLUME(1, 2, 3), 1 * 2 * 3);
-  EXPECT_DOUBLE_EQ(IGN_CUBE_VOLUME(.1, .2, .3),
-                   IGN_CUBE_VOLUME_V(math::Vector3d(0.1, 0.2, 0.3)));
+  EXPECT_DOUBLE_EQ(IGN_BOX_VOLUME(1, 2, 3), 1 * 2 * 3);
+  EXPECT_DOUBLE_EQ(IGN_BOX_VOLUME(.1, .2, .3),
+                   IGN_BOX_VOLUME_V(math::Vector3d(0.1, 0.2, 0.3)));
 }

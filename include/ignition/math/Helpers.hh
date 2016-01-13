@@ -103,11 +103,11 @@
 /// \param[in] _x X length
 /// \param[in] _y Y length
 /// \param[in] _z Z length
-#define IGN_CUBE_VOLUME(_x, _y, _z) (_x *_y * _z)
+#define IGN_BOX_VOLUME(_x, _y, _z) (_x *_y * _z)
 
 /// \brief Compute cube volume from a vector
 /// \param[in] _v Vector3d that contains the cube's dimensions.
-#define IGN_CUBE_VOLUME_V(_v) (_v.X() *_v.Y() * _v.Z())
+#define IGN_BOX_VOLUME_V(_v) (_v.X() *_v.Y() * _v.Z())
 
 namespace ignition
 {
