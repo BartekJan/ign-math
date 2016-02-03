@@ -34,8 +34,14 @@ std::tuple<uint32_t, uint32_t> ignition::math::Unpair(const uint64_t _key)
   uint64_t sqrt = static_cast<uint64_t>(
       std::floor(std::sqrt(static_cast<long double>(_key))));
   uint64_t sq = sqrt * sqrt;
+  std::cerr << "_key " << _key
+            << ", sqrt " << sqrt
+            << ", sq " << sq
+            << std::endl;
 
   return ((_key - sq) >= sqrt) ?
-    std::make_tuple(sqrt, _key - sq - sqrt) :
-    std::make_tuple(_key - sq, sqrt);
+    std::make_tuple(static_cast<uint32_t>(sqrt),
+                    static_cast<uint32_t>(_key - sq - sqrt)) :
+    std::make_tuple(static_cast<uint32_t>(_key - sq),
+                    static_cast<uint32_t>(sqrt));
 }
