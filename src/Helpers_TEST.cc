@@ -367,6 +367,7 @@ TEST(HelpersTest, Pair)
     EXPECT_EQ(d, b);
   }
 
+  if (0)
   {
     uint32_t c, d;
     std::set<uint64_t> set;
