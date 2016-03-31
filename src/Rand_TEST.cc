@@ -15,6 +15,7 @@
  *
 */
 
+#include <assert.h>
 #include <gtest/gtest.h>
 
 #include "ignition/math/Helpers.hh"
@@ -26,7 +27,6 @@ using namespace ignition;
 TEST(RandTest, Rand1)
 {
   double d;
-  int i;
   // TODO: implement a proper random number generator test
 
   d = ignition::math::Rand::DblUniform(1, 2);
@@ -38,12 +38,18 @@ TEST(RandTest, Rand1)
 TEST(RandTest, Rand2)
 {
   double d;
-  int i;
   // TODO: implement a proper random number generator test
 
   d = ignition::math::Rand::DblUniform(1, 2);
   EXPECT_LE(d, 2);
   EXPECT_GE(d, 1.5);
+}
+
+//////////////////////////////////////////////////
+TEST(RandTest, Fail)
+{
+  double d = ignition::math::Rand::DblUniform(1, 2);
+  assert(d >= 1.5);
 }
 
 //////////////////////////////////////////////////
