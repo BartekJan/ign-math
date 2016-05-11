@@ -60,7 +60,7 @@ namespace ignition
 
       /// \brief Copy Constructor
       /// \param[in] _radian Radians
-      public: Angle(double _radian);
+      public: explicit Angle(double _radian);
 
       /// \brief Copy constructor
       /// \param[in] _angle Angle to copy
@@ -93,6 +93,11 @@ namespace ignition
       /// \return The new angle.
       public: Angle &operator=(const Angle &_angle);
 
+      /// \brief Assignment operator. Set this angle to the parameter
+      /// \param[in] _radians Angle, in radians) to copy
+      /// \return The new angle.
+      public: Angle &operator=(const double _radians);
+
       /// \brief Return the angle's radian value
       /// \return double containing the angle's radian value
       public: double operator()() const;
@@ -104,65 +109,133 @@ namespace ignition
                 return value;
               }
 
+      /// \brief Prefix negative operator
+      /// \return the new angle
+      public: Angle operator-() const;
+
+      /// \brief Prefix positive operator
+      /// \return the new angle
+      public: Angle operator+() const;
+
       /// \brief Substraction, result = this - _angle
       /// \param[in] _angle Angle for substraction
       /// \return the new angle
       public: Angle operator-(const Angle &_angle) const;
+
+      /// \brief Substraction, result = this - _angle
+      /// \param[in] _radians Radians for substraction
+      /// \return the new angle
+      public: Angle operator-(const double _radians) const;
 
       /// \brief Addition operator, result = this + _angle
       /// \param[in] _angle Angle for addition
       /// \return the new angle
       public: Angle operator+(const Angle &_angle) const;
 
+      /// \brief Addition operator, result = this + _angle
+      /// \param[in] _radians Radians for addition
+      /// \return the new angle
+      public: Angle operator+(const double _radians) const;
+
       /// \brief Multiplication operator, result = this * _angle
       /// \param[in] _angle Angle for multiplication
       /// \return the new angle
       public: Angle operator*(const Angle &_angle) const;
+
+      /// \brief Multiplication operator, result = this * _angle
+      /// \param[in] _radians Radians for multiplication
+      /// \return the new angle
+      public: Angle operator*(const double _radians) const;
 
       /// \brief Division, result = this / _angle
       /// \param[in] _angle Angle for division
       /// \return the new angle
       public: Angle operator/(const Angle &_angle) const;
 
+      /// \brief Division, result = this / _angle
+      /// \param[in] _radians Radians for division
+      /// \return the new angle
+      public: Angle operator/(const double _radians) const;
+
       /// \brief Subtraction set, this = this - _angle
       /// \param[in] _angle Angle for subtraction
       /// \return angle
       public: Angle operator-=(const Angle &_angle);
+
+      /// \brief Subtraction set, this = this - _angle
+      /// \param[in] _radians Radians for subtraction
+      /// \return angle
+      public: Angle operator-=(const double _radians);
 
       /// \brief Addition set, this = this + _angle
       /// \param[in] _angle Angle for addition
       /// \return angle
       public: Angle operator+=(const Angle &_angle);
 
+      /// \brief Addition set, this = this + _angle
+      /// \param[in] _radians Radians for addition
+      /// \return angle
+      public: Angle operator+=(const double _radians);
+
       /// \brief Multiplication set, this = this * _angle
       /// \param[in] _angle Angle for multiplication
       /// \return angle
       public: Angle operator*=(const Angle &_angle);
+
+      /// \brief Multiplication set, this = this * _angle
+      /// \param[in] _radians Radians for multiplication
+      /// \return angle
+      public: Angle operator*=(const double _radians);
 
       /// \brief Division set, this = this / _angle
       /// \param[in] _angle Angle for division
       /// \return angle
       public: Angle operator/=(const Angle &_angle);
 
+      /// \brief Division set, this = this / _angle
+      /// \param[in] _radians Radians for division
+      /// \return angle
+      public: Angle operator/=(const double _radians);
+
       /// \brief Equality operator, result = this == _angle
       /// \param[in] _angle Angle to check for equality
       /// \return true if this == _angle
       public: bool operator==(const Angle &_angle) const;
+
+      /// \brief Equality operator, result = this == _angle
+      /// \param[in] _radians Radians to check for equality
+      /// \return true if this == _angle
+      public: bool operator==(const double _radians) const;
 
       /// \brief Inequality
       /// \param[in] _angle Angle to check for inequality
       /// \return true if this != _angle
       public: bool operator!=(const Angle &_angle) const;
 
+      /// \brief Inequality
+      /// \param[in] _radians Radians to check for inequality
+      /// \return true if this != _angle
+      public: bool operator!=(const double _radians) const;
+
       /// \brief Less than operator
       /// \param[in] _angle Angle to check
       /// \return true if this < _angle
       public: bool operator<(const Angle &_angle) const;
 
+      /// \brief Less than operator
+      /// \param[in] _radians Radians to check
+      /// \return true if this < _radians
+      public: bool operator<(const double _radians) const;
+
       /// \brief Less or equal operator
       /// \param[in] _angle Angle to check
       /// \return true if this <= _angle
       public: bool operator<=(const Angle &_angle) const;
+
+      /// \brief Less or equal operator
+      /// \param[in] _radians Radians to check
+      /// \return true if this <= _radians
+      public: bool operator<=(const double _radians) const;
 
       /// \brief Greater than operator
       /// \param[in] _angle Angle to check
@@ -173,6 +246,16 @@ namespace ignition
       /// \param[in] _angle Angle to check
       /// \return true if this >= _angle
       public: bool operator>=(const Angle &_angle) const;
+
+      /// \brief Greater than operator
+      /// \param[in] _radians Radians to check
+      /// \return true if this > _radians
+      public: bool operator>(const double _radians) const;
+
+      /// \brief Greater or equal operator
+      /// \param[in] _radians Radians to check
+      /// \return true if this >= _radians
+      public: bool operator>=(const double _radians) const;
 
       /// \brief Stream insertion operator. Outputs in degrees
       /// \param[in] _out output stream
@@ -201,7 +284,20 @@ namespace ignition
       /// The angle in radians
       private: double value;
     };
-  }
+
+    }
 }
+
+/// \brief Literal that will convert degrees to an ignition::math::Angle
+/// object. Example usage: 45.0_ign_deg
+/// \param[in] _deg Degrees to convert into an ignition::math::Angle
+/// \return The ignition::math::Angle object
+ignition::math::Angle IGNITION_VISIBLE operator"" _ign_deg(long double _deg);
+
+/// \brief Literal that will convert radians to an ignition::math::Angle
+/// object. Example usage: 0.785_ign_rad
+/// \param[in] _rad Radians to convert into an ignition::math::Angle
+/// \return The ignition::math::Angle object
+ignition::math::Angle IGNITION_VISIBLE operator"" _ign_rad(long double _rad);
 
 #endif

@@ -61,9 +61,8 @@ namespace ignition
       /// \param[in] _normal The plane normal
       /// \param[in] _offset Offset along the normal
       public: Plane(const Vector3<T> &_normal, T _offset = 0.0)
+              : normal(_normal), d(_offset)
       {
-        this->normal = _normal;
-        this->d = _offset;
       }
 
       /// \brief Constructor
