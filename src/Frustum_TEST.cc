@@ -236,6 +236,7 @@ TEST(FrustumTest, FOV)
   frustum.SetFOV(1.5707_ign_rad);
 
   EXPECT_EQ(frustum.FOV(), 1.5707_ign_rad);
+  EXPECT_EQ(frustum.FOV(), 90.0_ign_deg);
 }
 
 /////////////////////////////////////////////////

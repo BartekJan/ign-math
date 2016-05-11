@@ -58,9 +58,17 @@ namespace ignition
       /// \brief Constructor
       public: Angle();
 
-      /// \brief Copy Constructor
+      /// \brief Constructor. Parameter is assumed to be radians.
       /// \param[in] _radian Radians
-      public: explicit Angle(double _radian);
+      public: explicit Angle(const int _radian);
+
+      /// \brief Constructor. Parameter is assumed to be radians.
+      /// \param[in] _radian Radians
+      public: explicit Angle(const double _radian);
+
+      /// \brief Constructor. Parameter is assumed to be radians.
+      /// \param[in] _radian Radians
+      public: explicit Angle(const long double _radian);
 
       /// \brief Copy constructor
       /// \param[in] _angle Angle to copy
@@ -71,11 +79,11 @@ namespace ignition
 
       /// \brief Set the value from an angle in radians
       /// \param[in] _radian Radian value
-      public: void Radian(double _radian);
+      public: void Radian(const double _radian);
 
       /// \brief Set the value from an angle in degrees
       /// \param[in] _degree Degree value
-      public: void Degree(double _degree);
+      public: void Degree(const double _degree);
 
       /// \brief Get the angle in radians
       /// \return double containing the angle's radian value
@@ -284,8 +292,7 @@ namespace ignition
       /// The angle in radians
       private: double value;
     };
-
-    }
+  }
 }
 
 /// \brief Literal that will convert degrees to an ignition::math::Angle

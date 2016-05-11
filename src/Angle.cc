@@ -32,9 +32,21 @@ Angle::Angle()
 }
 
 //////////////////////////////////////////////////
-Angle::Angle(double _radian)
+Angle::Angle(const int _radian)
+{
+  this->value = static_cast<double>(_radian);
+}
+
+//////////////////////////////////////////////////
+Angle::Angle(const double _radian)
 {
   this->value = _radian;
+}
+
+//////////////////////////////////////////////////
+Angle::Angle(const long double _radian)
+{
+  this->value = static_cast<double>(_radian);
 }
 
 //////////////////////////////////////////////////
@@ -49,13 +61,13 @@ Angle::~Angle()
 }
 
 //////////////////////////////////////////////////
-void Angle::Radian(double _radian)
+void Angle::Radian(const double _radian)
 {
   this->value = _radian;
 }
 
 //////////////////////////////////////////////////
-void Angle::Degree(double _degree)
+void Angle::Degree(const double _degree)
 {
   this->value = _degree * IGN_PI / 180.0;
 }
