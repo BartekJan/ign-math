@@ -1,4 +1,10 @@
-## Igniton Math 2.x
+## Ignition Math 3.x
+
+1. Fixed cppcheck in Xenial. Added `double` operator overloads to Angle, and
+   `_ign_deg` and `_ign_rad` literals.
+    * [Pull request 106](https://bitbucket.org/ignitionrobotics/ign-math/pull-request/106)
+
+## Ignition Math 2.x
 
 ### Ignition Math 2.3.0
 
