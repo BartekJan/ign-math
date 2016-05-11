@@ -607,3 +607,109 @@ TEST(MassMatrix3dTest, PrincipalAxesOffsetNoRepeat)
     math::Vector3d(11.6116, 8.6116, 8.6116),
     math::Vector3d(2, 2, 2));
 }
+
+/////////////////////////////////////////////////
+TEST(MassMatrix3dTest, EquivalentBox)
+{
+  // Default mass matrix with non-positive inertia
+  {
+    math::MassMatrix3d m;
+    math::Vector3d size;
+    math::Quaterniond rot;
+
+    // size is all zeros, so SetFromBox should fail
+    EXPECT_FALSE(m.SetFromBox(0.0, size, rot));
+    EXPECT_FALSE(m.SetFromBox(size, rot));
+
+    // even if mass is valid, it should not be set if size is invalid
+    EXPECT_FALSE(m.SetFromBox(1.0, size, rot));
+    EXPECT_EQ(m.Mass(), 0.0);
+
+    // equivalent box should not be findable
+    EXPECT_FALSE(m.EquivalentBox(size, rot));
+  }
+
+  // Moment of inertia matrix that doesn't satisfy triangle inequality
+  {
+    const math::Vector3d Ixxyyzz(2.0, 2.0, 2.0);
+    const math::Vector3d Ixyxzyz(-1.0, 0, -1.0);
+    math::MassMatrix3d m(1.0, Ixxyyzz, Ixyxzyz);
+    math::Vector3d size;
+    math::Quaterniond rot;
+    EXPECT_FALSE(m.EquivalentBox(size, rot));
+  }
+
+  // Identity inertia matrix
+  // expect cube with side length sqrt(6)
+  {
+    const double mass = 1.0;
+    math::MassMatrix3d m(mass, math::Vector3d::One, math::Vector3d::Zero);
+    math::Vector3d size;
+    math::Vector3d sizeTrue(sqrt(6) * math::Vector3d::One);
+    math::Quaterniond rot;
+    math::Quaterniond rotTrue(math::Quaterniond::Identity);
+    EXPECT_TRUE(m.EquivalentBox(size, rot));
+    EXPECT_EQ(size, sizeTrue);
+    EXPECT_EQ(rot, rotTrue);
+
+    // create new MassMatrix3d
+    // it initially has zero mass, so SetFromBox(size, rot) will fail
+    math::MassMatrix3d m2;
+    EXPECT_FALSE(m2.SetFromBox(sizeTrue, rotTrue));
+    EXPECT_TRUE(m2.SetFromBox(mass, sizeTrue, rotTrue));
+    EXPECT_EQ(m, m2);
+  }
+
+  // unit box with mass 1.0
+  {
+    const double mass = 1.0;
+    const math::Vector3d size(1, 1, 1);
+    double Ixx = mass/12 * (std::pow(size.Y(), 2) + std::pow(size.Z(), 2));
+    double Iyy = mass/12 * (std::pow(size.Z(), 2) + std::pow(size.X(), 2));
+    double Izz = mass/12 * (std::pow(size.X(), 2) + std::pow(size.Y(), 2));
+    math::Vector3d Ixxyyzz(Ixx, Iyy, Izz);
+    math::MassMatrix3d m(mass, Ixxyyzz, math::Vector3d::Zero);
+    math::Vector3d size2;
+    math::Quaterniond rot;
+    EXPECT_TRUE(m.EquivalentBox(size2, rot));
+    EXPECT_EQ(size, size2);
+    EXPECT_EQ(rot, math::Quaterniond::Identity);
+
+    math::MassMatrix3d m2;
+    EXPECT_TRUE(m2.SetFromBox(mass, size, rot));
+    EXPECT_EQ(m, m2);
+  }
+
+  // box 1x4x9
+  {
+    const double mass = 12.0;
+    const math::Vector3d Ixxyyzz(97, 82, 17);
+    math::MassMatrix3d m(mass, Ixxyyzz, math::Vector3d::Zero);
+    math::Vector3d size;
+    math::Quaterniond rot;
+    EXPECT_TRUE(m.EquivalentBox(size, rot));
+    EXPECT_EQ(size, math::Vector3d(1, 4, 9));
+    EXPECT_EQ(rot, math::Quaterniond::Identity);
+
+    math::MassMatrix3d m2;
+    EXPECT_TRUE(m2.SetFromBox(mass, size, rot));
+    EXPECT_EQ(m, m2);
+  }
+
+  // long slender box
+  {
+    const double mass = 12.0;
+    const math::Vector3d Ixxyyzz(1, 1, 2e-6);
+    math::MassMatrix3d m(mass, Ixxyyzz, math::Vector3d::Zero);
+    math::Vector3d size;
+    math::Quaterniond rot;
+    EXPECT_TRUE(m.EquivalentBox(size, rot));
+    EXPECT_EQ(size, math::Vector3d(1e-3, 1e-3, 1));
+    EXPECT_EQ(rot, math::Quaterniond::Identity);
+
+    math::MassMatrix3d m2;
+    EXPECT_TRUE(m2.SetFromBox(mass, size, rot));
+    EXPECT_EQ(m, m2);
+  }
+}
+
