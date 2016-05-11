@@ -225,17 +225,17 @@ TEST(FrustumTest, FOV)
       // Far distance
       10,
       // Field of view
-      Angle(IGN_DTOR(45)),
+      45.0_ign_deg,
       // Aspect ratio
       320.0/320.0,
       // Pose
       Pose3d(0, 0, 0, 0, IGN_PI*0.5, 0));
 
-  EXPECT_EQ(frustum.FOV(), math::Angle(IGN_DTOR(45)));
+  EXPECT_EQ(frustum.FOV(), 45.0_ign_deg);
 
-  frustum.SetFOV(1.5707);
+  frustum.SetFOV(1.5707_ign_rad);
 
-  EXPECT_EQ(frustum.FOV(), math::Angle(1.5707));
+  EXPECT_EQ(frustum.FOV(), 1.5707_ign_rad);
 }
 
 /////////////////////////////////////////////////

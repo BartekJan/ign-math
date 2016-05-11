@@ -45,3 +45,14 @@ ignition::math::Unpair(const ignition::math::PairOutput _key)
     std::make_tuple(static_cast<PairInput>(_key - sq),
                     static_cast<PairInput>(sqrt));
 }
+
+/*
+ignition::math::Angle operator "" ignition::math::_ign_rad(long double _radians)
+{
+  return ignition::math::Angle(IGN_DTOR(_radians));
+}
+
+ignition::math::Angle operator "" ignition::math::_ign_rad(long double _radians)
+{
+  return ignition::math::Angle(_radians);
+}*/
