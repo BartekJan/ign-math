@@ -301,13 +301,13 @@ double Angle::operator()() const
 }
 
 //////////////////////////////////////////////////
-ignition::math::Angle operator"" _ign_deg(long double _radians)
+ignition::math::Angle operator"" _ign_deg(long double _deg)
 {
-  return ignition::math::Angle(IGN_DTOR(_radians));
+  return ignition::math::Angle(IGN_DTOR(_deg));
 }
 
 //////////////////////////////////////////////////
-ignition::math::Angle operator"" _ign_rad(long double _radians)
+ignition::math::Angle operator"" _ign_rad(long double _rad)
 {
-  return ignition::math::Angle(_radians);
+  return ignition::math::Angle(_rad);
 }
