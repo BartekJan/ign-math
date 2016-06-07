@@ -14,7 +14,6 @@
  * limitations under the License.
  *
 */
-
 #ifndef IGNITION_MATH_MATRIX3_HH_
 #define IGNITION_MATH_MATRIX3_HH_
 
@@ -80,7 +79,7 @@ namespace ignition
 
       /// \brief Construct Matrix3 from a quaternion.
       /// \param[in] _q Quaternion.
-      public: Matrix3(const Quaternion<T> &_q)
+      public: explicit Matrix3(const Quaternion<T> &_q)
       {
         Quaternion<T> qt = _q;
         qt.Normalize();
