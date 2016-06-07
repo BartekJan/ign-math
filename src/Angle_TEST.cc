@@ -80,21 +80,31 @@ TEST(AngleTest, Angle)
 
   angle = 1.2;
   EXPECT_TRUE(angle <= 1.21);
+  EXPECT_TRUE(angle <= 1.21_ign_rad);
   EXPECT_FALSE(angle <= 1.19);
+  EXPECT_FALSE(angle <= 1.19_ign_rad);
   EXPECT_TRUE(angle <= 1.2);
+  EXPECT_TRUE(angle <= 1.2_ign_rad);
   EXPECT_FALSE(angle <= -1.19);
+  EXPECT_FALSE(angle <= -1.19_ign_rad);
 
-  EXPECT_TRUE(math::Angle(1.2) <= math::Angle(1.2000000001));
-  EXPECT_TRUE(math::Angle(1.2000000001) <= math::Angle(1.2));
+  EXPECT_TRUE(1.2_ign_rad <= 1.2000000001_ign_rad);
+  EXPECT_TRUE(1.2000000001_ign_rad <= 1.2_ign_rad);
 
   angle = 1.2;
   EXPECT_FALSE(angle >= 1.21);
+  EXPECT_FALSE(angle >= 1.21_ign_rad);
   EXPECT_TRUE(angle >= 1.19);
+  EXPECT_TRUE(angle >= 1.19_ign_rad);
   EXPECT_TRUE(angle >= 1.2);
+  EXPECT_TRUE(angle >= 1.2_ign_rad);
   EXPECT_TRUE(angle >= -1.19);
+  EXPECT_TRUE(angle >= -1.19_ign_rad);
 
   EXPECT_TRUE(math::Angle(1.2) >= math::Angle(1.2000000001));
+  EXPECT_TRUE(1.2_ign_rad >= 1.2000000001_ign_rad);
   EXPECT_TRUE(math::Angle(1.2000000001) >= math::Angle(1.2));
+  EXPECT_TRUE(1.2000000001_ign_rad >= 1.2_ign_rad);
 }
 
 /////////////////////////////////////////////////
@@ -116,4 +126,55 @@ TEST(AngleTest, OperatorStreamOut)
   std::ostringstream stream;
   stream << a;
   EXPECT_EQ(stream.str(), "0.1");
+}
+
+/////////////////////////////////////////////////
+TEST(AngleTest, MoreOperators)
+{
+  math::Angle angle(1.23);
+  math::Angle angle2(angle);
+  EXPECT_EQ(+angle, angle2);
+  EXPECT_NE(-angle, angle2);
+  EXPECT_EQ(-angle, -angle2);
+  EXPECT_NE(-angle, +angle2);
+
+  EXPECT_EQ(angle - 1.0, 1.23_ign_rad - 1.0_ign_rad);
+  EXPECT_EQ(angle + 1.0, 2.23_ign_rad);
+  EXPECT_EQ(angle * 2.0, 1.23_ign_rad * 2.0_ign_rad);
+  EXPECT_EQ(angle / 2.0, 1.23_ign_rad / 2.0_ign_rad);
+
+  angle2 = angle;
+  angle2 -= 2.3;
+  EXPECT_EQ(angle - 2.3, angle2);
+
+  angle2 = angle;
+  angle2 += 1.2;
+  EXPECT_EQ(angle + 1.2, angle2);
+
+  angle2 = angle;
+  angle2 *= 5.1;
+  EXPECT_EQ(angle * 5.1, angle2);
+
+  angle2 = angle;
+  angle2 /= 2.2;
+  EXPECT_EQ(angle / 2.2, angle2);
+
+  EXPECT_TRUE(angle != 0.0);
+  EXPECT_TRUE(angle != 1.0);
+  EXPECT_TRUE(angle != angle2);
+
+  angle2 = 1.23;
+  EXPECT_TRUE(angle == 1.23);
+  EXPECT_TRUE(angle <= 1.23);
+  EXPECT_TRUE(angle < 1.24);
+  EXPECT_TRUE(angle >= 1.23);
+  EXPECT_TRUE(angle > 1.22);
+
+  EXPECT_TRUE(angle() == 1.23);
+  EXPECT_TRUE(angle() <= 1.23);
+  EXPECT_TRUE(angle() < 1.24);
+  EXPECT_TRUE(angle() >= 1.23);
+  EXPECT_TRUE(angle() >= 1.22);
+
+  EXPECT_TRUE(45.1_ign_deg == IGN_DTOR(45.1));
 }

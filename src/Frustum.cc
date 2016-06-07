@@ -25,7 +25,7 @@ using namespace math;
 
 /////////////////////////////////////////////////
 Frustum::Frustum()
-  : dataPtr(new FrustumPrivate(0, 1, IGN_DTOR(45), 1, Pose3d::Zero))
+  : dataPtr(new FrustumPrivate(0, 1, 45.0_ign_deg, 1, Pose3d::Zero))
 {
 }
 
