@@ -32,9 +32,21 @@ Angle::Angle()
 }
 
 //////////////////////////////////////////////////
-Angle::Angle(double _radian)
+Angle::Angle(const int _radian)
+{
+  this->value = static_cast<double>(_radian);
+}
+
+//////////////////////////////////////////////////
+Angle::Angle(const double _radian)
 {
   this->value = _radian;
+}
+
+//////////////////////////////////////////////////
+Angle::Angle(const long double _radian)
+{
+  this->value = static_cast<double>(_radian);
 }
 
 //////////////////////////////////////////////////
@@ -49,13 +61,13 @@ Angle::~Angle()
 }
 
 //////////////////////////////////////////////////
-void Angle::Radian(double _radian)
+void Angle::Radian(const double _radian)
 {
   this->value = _radian;
 }
 
 //////////////////////////////////////////////////
-void Angle::Degree(double _degree)
+void Angle::Degree(const double _degree)
 {
   this->value = _degree * IGN_PI / 180.0;
 }
@@ -79,9 +91,27 @@ void Angle::Normalize()
 }
 
 //////////////////////////////////////////////////
+Angle Angle::operator-() const
+{
+  return Angle(-this->value);
+}
+
+//////////////////////////////////////////////////
+Angle Angle::operator+() const
+{
+  return Angle(+this->value);
+}
+
+//////////////////////////////////////////////////
 Angle Angle::operator-(const Angle &angle) const
 {
   return Angle(this->value - angle.value);
+}
+
+//////////////////////////////////////////////////
+Angle Angle::operator-(const double _radians) const
+{
+  return Angle(this->value - _radians);
 }
 
 //////////////////////////////////////////////////
@@ -91,9 +121,21 @@ Angle Angle::operator+(const Angle &angle) const
 }
 
 //////////////////////////////////////////////////
+Angle Angle::operator+(const double _radians) const
+{
+  return Angle(this->value + _radians);
+}
+
+//////////////////////////////////////////////////
 Angle Angle::operator*(const Angle &angle) const
 {
   return Angle(this->value * angle.value);
+}
+
+//////////////////////////////////////////////////
+Angle Angle::operator*(const double _radians) const
+{
+  return Angle(this->value * _radians);
 }
 
 //////////////////////////////////////////////////
@@ -103,9 +145,22 @@ Angle Angle::operator/(const Angle &angle) const
 }
 
 //////////////////////////////////////////////////
+Angle Angle::operator/(const double _radians) const
+{
+  return Angle(this->value / _radians);
+}
+
+//////////////////////////////////////////////////
 Angle Angle::operator-=(const Angle &angle)
 {
   this->value -= angle.value;
+  return *this;
+}
+
+//////////////////////////////////////////////////
+Angle Angle::operator-=(const double _radians)
+{
+  this->value -= _radians;
   return *this;
 }
 
@@ -117,9 +172,23 @@ Angle Angle::operator+=(const Angle &angle)
 }
 
 //////////////////////////////////////////////////
+Angle Angle::operator+=(const double _radians)
+{
+  this->value += _radians;
+  return *this;
+}
+
+//////////////////////////////////////////////////
 Angle Angle::operator*=(const Angle &angle)
 {
   this->value *= angle.value;
+  return *this;
+}
+
+//////////////////////////////////////////////////
+Angle Angle::operator*=(const double _radians)
+{
+  this->value *= _radians;
   return *this;
 }
 
@@ -131,9 +200,22 @@ Angle Angle::operator/=(const Angle &angle)
 }
 
 //////////////////////////////////////////////////
+Angle Angle::operator/=(const double _radians)
+{
+  this->value /= _radians;
+  return *this;
+}
+
+//////////////////////////////////////////////////
 bool Angle::operator==(const Angle &angle) const
 {
   return equal(this->value, angle.value, 0.001);
+}
+
+//////////////////////////////////////////////////
+bool Angle::operator==(const double _radians) const
+{
+  return equal(this->value, _radians, 0.001);
 }
 
 //////////////////////////////////////////////////
@@ -143,9 +225,21 @@ bool Angle::operator!=(const Angle &angle) const
 }
 
 //////////////////////////////////////////////////
+bool Angle::operator!=(const double _radians) const
+{
+  return !(*this == _radians);
+}
+
+//////////////////////////////////////////////////
 bool Angle::operator<(const Angle &angle) const
 {
   return this->value < angle.value;
+}
+
+//////////////////////////////////////////////////
+bool Angle::operator<(const double _radians) const
+{
+  return this->value < _radians;
 }
 
 //////////////////////////////////////////////////
@@ -155,15 +249,33 @@ bool Angle::operator<=(const Angle &angle) const
 }
 
 //////////////////////////////////////////////////
+bool Angle::operator<=(const double _radians) const
+{
+  return this->value < _radians || math::equal(this->value, _radians);
+}
+
+//////////////////////////////////////////////////
 bool Angle::operator>(const Angle &angle) const
 {
   return this->value > angle.value;
 }
 
 //////////////////////////////////////////////////
+bool Angle::operator>(const double _radians) const
+{
+  return this->value > _radians;
+}
+
+//////////////////////////////////////////////////
 bool Angle::operator>=(const Angle &angle) const
 {
   return this->value > angle.value || math::equal(this->value, angle.value);
+}
+
+//////////////////////////////////////////////////
+bool Angle::operator>=(const double _radians) const
+{
+  return this->value > _radians || math::equal(this->value, _radians);
 }
 
 //////////////////////////////////////////////////
@@ -176,7 +288,26 @@ Angle &Angle::operator=(const Angle &_angle)
 }
 
 //////////////////////////////////////////////////
+Angle &Angle::operator=(const double _radians)
+{
+  this->value = _radians;
+  return *this;
+}
+
+//////////////////////////////////////////////////
 double Angle::operator()() const
 {
   return this->value;
+}
+
+//////////////////////////////////////////////////
+ignition::math::Angle operator"" _ign_deg(long double _deg)
+{
+  return ignition::math::Angle(IGN_DTOR(_deg));
+}
+
+//////////////////////////////////////////////////
+ignition::math::Angle operator"" _ign_rad(long double _rad)
+{
+  return ignition::math::Angle(_rad);
 }
