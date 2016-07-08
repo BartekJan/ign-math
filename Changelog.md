@@ -1,6 +1,9 @@
 ## Ignition Math 2.x
 
-### Ignition Math 2.4
+### Ignition Math 2.4.x
+
+1. Added PID class
+    * [Pull request 117](https://bitbucket.org/ignitionrobotics/ign-math/pull-request/117)
 
 #### Ignition Math 2.4.1
 
@@ -18,7 +21,9 @@
     * A contribution from Shintaro Noda
     * [Pull request 104](https://bitbucket.org/ignitionrobotics/ign-math/pull-request/104)
 
-### Ignition Math 2.3.0
+### Ignition Math 2.3
+
+#### Ignition Math 2.3.0
 
 1. Added simple volumes formulas
     * [Pull request 84](https://bitbucket.org/ignitionrobotics/ign-math/pull-request/84)
