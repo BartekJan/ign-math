@@ -20,3 +20,6 @@ test_script:
 
 after_build:
   - cmake --build . --config %CONFIGURATION% --target INSTALL
+
+after_test:
+  - bash <(curl -s https://codecov.io/bash)
