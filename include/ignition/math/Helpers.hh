@@ -26,107 +26,141 @@
 #include <tuple>
 #include <cstdint>
 
+#include <ignition/math/System.hh>
+
 /// \brief Double maximum value. This value will be similar to 1.79769e+308
-#define IGN_DBL_MAX std::numeric_limits<double>::max()
+/// \deprecated Use static const value instead.
+#define IGN_DBL_MAX ignition::math::DPRCT_MAX_D
 
 /// \brief Double min value. This value will be similar to 2.22507e-308
-#define IGN_DBL_MIN std::numeric_limits<double>::min()
+/// \deprecated Use static const value instead.
+#define IGN_DBL_MIN ignition::math::DPRCT_MIN_D
 
 /// \brief Double low value, equivalent to -IGN_DBL_MAX
-#define IGN_DBL_LOW std::numeric_limits<double>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_DBL_LOW ignition::math::DPRCT_LOW_D
 
 /// \brief Double positive infinite value
-#define IGN_DBL_INF std::numeric_limits<double>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_DBL_INF ignition::math::DPRCT_INF_D
 
 /// \brief Float maximum value. This value will be similar to 3.40282e+38
-#define IGN_FLT_MAX std::numeric_limits<float>::max()
+/// \deprecated Use static const value instead.
+#define IGN_FLT_MAX ignition::math::DPRCT_MAX_F
 
 /// \brief Float minimum value. This value will be similar to 1.17549e-38
-#define IGN_FLT_MIN std::numeric_limits<float>::min()
+/// \deprecated Use static const value instead.
+#define IGN_FLT_MIN ignition::math::DPRCT_MIN_F
 
 /// \brief Float lowest value, equivalent to -IGN_FLT_MAX
-#define IGN_FLT_LOW std::numeric_limits<float>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_FLT_LOW ignition::math::DPRCT_LOW_F
 
 /// \brief Float positive infinite value
-#define IGN_FLT_INF std::numeric_limits<float>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_FLT_INF ignition::math::DPRCT_INF_F
 
 /// \brief 16bit unsigned integer maximum value
-#define IGN_UINT16_MAX std::numeric_limits<uint16_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_UINT16_MAX ignition::math::DPRCT_MAX_UI16
 
 /// \brief 16bit unsigned integer minimum value
-#define IGN_UINT16_MIN std::numeric_limits<uint16_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_UINT16_MIN ignition::math::DPRCT_MIN_UI16
 
 /// \brief 16bit unsigned integer lowest value. This is equivalent to
 /// IGN_UINT16_MIN, and is defined here for completeness.
-#define IGN_UINT16_LOW std::numeric_limits<uint16_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_UINT16_LOW ignition::math::DPRCT_LOW_UI16
 
 /// \brief 16-bit unsigned integer positive infinite value
-#define IGN_UINT16_INF std::numeric_limits<uint16_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_UINT16_INF ignition::math::DPRCT_INF_UI16
 
 /// \brief 16bit integer maximum value
-#define IGN_INT16_MAX std::numeric_limits<int16_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_INT16_MAX ignition::math::DPRCT_MAX_I16
 
 /// \brief 16bit integer minimum value
-#define IGN_INT16_MIN std::numeric_limits<int16_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_INT16_MIN ignition::math::DPRCT_MIN_I16
 
 /// \brief 16bit integer lowest value. This is equivalent to IGN_INT16_MIN,
 /// and is defined here for completeness.
-#define IGN_INT16_LOW std::numeric_limits<int16_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_INT16_LOW ignition::math::DPRCT_LOW_I16
 
 /// \brief 16-bit integer positive infinite value
-#define IGN_INT16_INF std::numeric_limits<int16_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_INT16_INF ignition::math::DPRCT_INF_I16
 
 /// \brief 32bit unsigned integer maximum value
-#define IGN_UINT32_MAX std::numeric_limits<uint32_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_UINT32_MAX ignition::math::DPRCT_MAX_UI32
 
 /// \brief 32bit unsigned integer minimum value
-#define IGN_UINT32_MIN std::numeric_limits<uint32_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_UINT32_MIN ignition::math::DPRCT_MIN_UI32
 
 /// \brief 32bit unsigned integer lowest value. This is equivalent to
 /// IGN_UINT32_MIN, and is defined here for completeness.
-#define IGN_UINT32_LOW std::numeric_limits<uint32_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_UINT32_LOW ignition::math::DPRCT_LOW_UI32
 
 /// \brief 32-bit unsigned integer positive infinite value
-#define IGN_UINT32_INF std::numeric_limits<uint32_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_UINT32_INF ignition::math::DPRCT_INF_UI32
 
 /// \brief 32bit integer maximum value
-#define IGN_INT32_MAX std::numeric_limits<int32_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_INT32_MAX ignition::math::DPRCT_MAX_I32
 
 /// \brief 32bit integer minimum value
-#define IGN_INT32_MIN std::numeric_limits<int32_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_INT32_MIN ignition::math::DPRCT_MIN_I32
 
 /// \brief 32bit integer minimum value. This is equivalent to IGN_INT32_MIN,
 /// and is defined here for completeness.
-#define IGN_INT32_LOW std::numeric_limits<int32_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_INT32_LOW ignition::math::DPRCT_LOW_I32
 
 /// \brief 32-bit integer positive infinite value
-#define IGN_INT32_INF std::numeric_limits<int32_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_INT32_INF ignition::math::DPRCT_INF_I32
 
 /// \brief 64bit unsigned integer maximum value
-#define IGN_UINT64_MAX std::numeric_limits<uint64_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_UINT64_MAX ignition::math::DPRCT_MAX_UI64
 
 /// \brief 64bit unsigned integer minimum value
-#define IGN_UINT64_MIN std::numeric_limits<uint64_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_UINT64_MIN ignition::math::DPRCT_MIN_UI64
 
 /// \brief 64bit unsigned integer lowest value. This is equivalent to
 /// IGN_UINT64_MIN, and is defined here for completeness.
-#define IGN_UINT64_LOW std::numeric_limits<uint64_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_UINT64_LOW ignition::math::DPRCT_LOW_UI64
 
 /// \brief 64-bit unsigned integer positive infinite value
-#define IGN_UINT64_INF std::numeric_limits<uint64_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_UINT64_INF ignition::math::DPRCT_INF_UI64
 
 /// \brief 64bit integer maximum value
-#define IGN_INT64_MAX std::numeric_limits<int64_t>::max()
+/// \deprecated Use static const value instead.
+#define IGN_INT64_MAX ignition::math::DPRCT_MAX_I64
 
 /// \brief 64bit integer minimum value
-#define IGN_INT64_MIN std::numeric_limits<int64_t>::min()
+/// \deprecated Use static const value instead.
+#define IGN_INT64_MIN ignition::math::DPRCT_MIN_I64
 
 /// \brief 64bit integer lowest value. This is equivalent to IGN_INT64_MIN,
 /// and is defined here for completeness.
-#define IGN_INT64_LOW std::numeric_limits<int64_t>::lowest()
+/// \deprecated Use static const value instead.
+#define IGN_INT64_LOW ignition::math::DPRCT_LOW_I64
 
 /// \brief 64-bit integer positive infinite value
-#define IGN_INT64_INF std::numeric_limits<int64_t>::infinity()
+/// \deprecated Use static const value instead.
+#define IGN_INT64_INF ignition::math::DPRCT_INF_I64
 
 /// \brief Define IGN_PI, IGN_PI_2, and IGN_PI_4.
 /// This was put here for Windows support.
@@ -170,52 +204,185 @@
 /// \param[in] _v Vector3d that contains the box's dimensions.
 #define IGN_BOX_VOLUME_V(_v) (_v.X() *_v.Y() * _v.Z())
 
-/** \def IGNITION_VISIBLE
- * Use to represent "symbol visible" if supported
- */
-
-/** \def IGNITION_HIDDEN
- * Use to represent "symbol hidden" if supported
- */
-
-#if defined _WIN32 || defined __CYGWIN__
-  #ifdef BUILDING_DLL
-    #ifdef __GNUC__
-      #define IGNITION_VISIBLE __attribute__ ((dllexport))
-    #else
-      #define IGNITION_VISIBLE __declspec(dllexport)
-    #endif
-  #else
-    #ifdef __GNUC__
-      #define IGNITION_VISIBLE __attribute__ ((dllimport))
-    #else
-      #define IGNITION_VISIBLE __declspec(dllimport)
-    #endif
-  #endif
-  #define IGNITION_HIDDEN
-#else
-  #if __GNUC__ >= 4
-    #define IGNITION_VISIBLE __attribute__ ((visibility ("default")))
-    #define IGNITION_HIDDEN  __attribute__ ((visibility ("hidden")))
-  #else
-    #define IGNITION_VISIBLE
-    #define IGNITION_HIDDEN
-  #endif
-#endif
-
 namespace ignition
 {
   /// \brief Math classes and function useful in robot applications.
   namespace math
   {
+    /// \brief size_t type with a value of 0
+    static const size_t IGN_ZERO_SIZE_T  = 0u;
+
+    /// \brief size_t type with a value of 1
+    static const size_t IGN_ONE_SIZE_T   = 1u;
+
+    /// \brief size_t type with a value of 2
+    static const size_t IGN_TWO_SIZE_T   = 2u;
+
+    /// \brief size_t type with a value of 3
+    static const size_t IGN_THREE_SIZE_T = 3u;
+
+    /// \brief size_t type with a value of 4
+    static const size_t IGN_FOUR_SIZE_T  = 4u;
+
+    /// \brief size_t type with a value of 5
+    static const size_t IGN_FIVE_SIZE_T  = 5u;
+
+    /// \brief size_t type with a value of 6
+    static const size_t IGN_SIX_SIZE_T   = 6u;
+
+    /// \brief size_t type with a value of 7
+    static const size_t IGN_SEVEN_SIZE_T = 7u;
+
+    /// \brief size_t type with a value of 8
+    static const size_t IGN_EIGHT_SIZE_T = 8u;
+
+    /// \brief size_t type with a value of 9
+    static const size_t IGN_NINE_SIZE_T  = 9u;
+
+    /// \brief Double maximum value. This value will be similar to 1.79769e+308
+    static const double MAX_D = std::numeric_limits<double>::max();
+
+    /// \brief Double min value. This value will be similar to 2.22507e-308
+    static const double MIN_D = std::numeric_limits<double>::min();
+
+    /// \brief Double low value, equivalent to -MAX_D
+    static const double LOW_D = std::numeric_limits<double>::lowest();
+
+    /// \brief Double positive infinite value
+    static const double INF_D = std::numeric_limits<double>::infinity();
+
     /// \brief Returns the representation of a quiet not a number (NAN)
     static const double NAN_D = std::numeric_limits<double>::quiet_NaN();
+
+    /// \brief Float maximum value. This value will be similar to 3.40282e+38
+    static const float MAX_F = std::numeric_limits<float>::max();
+
+    /// \brief Float minimum value. This value will be similar to 1.17549e-38
+    static const float MIN_F = std::numeric_limits<float>::min();
+
+    /// \brief Float low value, equivalent to -MAX_F
+    static const float LOW_F = std::numeric_limits<float>::lowest();
+
+    /// \brief float positive infinite value
+    static const float INF_F = std::numeric_limits<float>::infinity();
 
     /// \brief Returns the representation of a quiet not a number (NAN)
     static const float NAN_F = std::numeric_limits<float>::quiet_NaN();
 
+    /// \brief 16bit unsigned integer maximum value
+    static const uint16_t MAX_UI16 = std::numeric_limits<uint16_t>::max();
+
+    /// \brief 16bit unsigned integer minimum value
+    static const uint16_t MIN_UI16 = std::numeric_limits<uint16_t>::min();
+
+    /// \brief 16bit unsigned integer lowest value. This is equivalent to
+    /// IGN_UINT16_MIN, and is defined here for completeness.
+    static const uint16_t LOW_UI16 = std::numeric_limits<uint16_t>::lowest();
+
+    /// \brief 16-bit unsigned integer positive infinite value
+    static const uint16_t INF_UI16 = std::numeric_limits<uint16_t>::infinity();
+
+    /// \brief 16bit unsigned integer maximum value
+    static const int16_t MAX_I16 = std::numeric_limits<int16_t>::max();
+
+    /// \brief 16bit unsigned integer minimum value
+    static const int16_t MIN_I16 = std::numeric_limits<int16_t>::min();
+
+    /// \brief 16bit unsigned integer lowest value. This is equivalent to
+    /// IGN_INT16_MIN, and is defined here for completeness.
+    static const int16_t LOW_I16 = std::numeric_limits<int16_t>::lowest();
+
+    /// \brief 16-bit unsigned integer positive infinite value
+    static const int16_t INF_I16 = std::numeric_limits<int16_t>::infinity();
+
+    /// \brief 32bit unsigned integer maximum value
+    static const uint32_t MAX_UI32 = std::numeric_limits<uint32_t>::max();
+
+    /// \brief 32bit unsigned integer minimum value
+    static const uint32_t MIN_UI32 = std::numeric_limits<uint32_t>::min();
+
+    /// \brief 32bit unsigned integer lowest value. This is equivalent to
+    /// IGN_UINT32_MIN, and is defined here for completeness.
+    static const uint32_t LOW_UI32 = std::numeric_limits<uint32_t>::lowest();
+
+    /// \brief 32-bit unsigned integer positive infinite value
+    static const uint32_t INF_UI32 = std::numeric_limits<uint32_t>::infinity();
+
+    /// \brief 32bit unsigned integer maximum value
+    static const int32_t MAX_I32 = std::numeric_limits<int32_t>::max();
+
+    /// \brief 32bit unsigned integer minimum value
+    static const int32_t MIN_I32 = std::numeric_limits<int32_t>::min();
+
+    /// \brief 32bit unsigned integer lowest value. This is equivalent to
+    /// IGN_INT32_MIN, and is defined here for completeness.
+    static const int32_t LOW_I32 = std::numeric_limits<int32_t>::lowest();
+
+    /// \brief 32-bit unsigned integer positive infinite value
+    static const int32_t INF_I32 = std::numeric_limits<int32_t>::infinity();
+
+    /// \brief 64bit unsigned integer maximum value
+    static const uint64_t MAX_UI64 = std::numeric_limits<uint64_t>::max();
+
+    /// \brief 64bit unsigned integer minimum value
+    static const uint64_t MIN_UI64 = std::numeric_limits<uint64_t>::min();
+
+    /// \brief 64bit unsigned integer lowest value. This is equivalent to
+    /// IGN_UINT64_MIN, and is defined here for completeness.
+    static const uint64_t LOW_UI64 = std::numeric_limits<uint64_t>::lowest();
+
+    /// \brief 64-bit unsigned integer positive infinite value
+    static const uint64_t INF_UI64 = std::numeric_limits<uint64_t>::infinity();
+
+    /// \brief 64bit unsigned integer maximum value
+    static const int64_t MAX_I64 = std::numeric_limits<int64_t>::max();
+
+    /// \brief 64bit unsigned integer minimum value
+    static const int64_t MIN_I64 = std::numeric_limits<int64_t>::min();
+
+    /// \brief 64bit unsigned integer lowest value. This is equivalent to
+    /// IGN_INT64_MIN, and is defined here for completeness.
+    static const int64_t LOW_I64 = std::numeric_limits<int64_t>::lowest();
+
+    /// \brief 64-bit unsigned integer positive infinite value
+    static const int64_t INF_I64 = std::numeric_limits<int64_t>::infinity();
+
     /// \brief Returns the representation of a quiet not a number (NAN)
     static const int NAN_I = std::numeric_limits<int>::quiet_NaN();
+
+    // variables created to deprecate macros in this file
+    static const double IGN_DEPRECATED(2) DPRCT_MAX_D = MAX_D;
+    static const double IGN_DEPRECATED(2) DPRCT_MIN_D = MIN_D;
+    static const double IGN_DEPRECATED(2) DPRCT_LOW_D = LOW_D;
+    static const double IGN_DEPRECATED(2) DPRCT_INF_D = INF_D;
+    static const float IGN_DEPRECATED(2) DPRCT_MAX_F = MAX_F;
+    static const float IGN_DEPRECATED(2) DPRCT_MIN_F = MIN_F;
+    static const float IGN_DEPRECATED(2) DPRCT_LOW_F = LOW_F;
+    static const float IGN_DEPRECATED(2) DPRCT_INF_F = INF_F;
+    static const uint16_t IGN_DEPRECATED(2) DPRCT_MAX_UI16 = MAX_UI16;
+    static const uint16_t IGN_DEPRECATED(2) DPRCT_MIN_UI16 = MIN_UI16;
+    static const uint16_t IGN_DEPRECATED(2) DPRCT_LOW_UI16 = LOW_UI16;
+    static const uint16_t IGN_DEPRECATED(2) DPRCT_INF_UI16 = INF_UI16;
+    static const int16_t IGN_DEPRECATED(2) DPRCT_MAX_I16 = MAX_I16;
+    static const int16_t IGN_DEPRECATED(2) DPRCT_MIN_I16 = MIN_I16;
+    static const int16_t IGN_DEPRECATED(2) DPRCT_LOW_I16 = LOW_I16;
+    static const int16_t IGN_DEPRECATED(2) DPRCT_INF_I16 = INF_I16;
+    static const uint32_t IGN_DEPRECATED(2) DPRCT_MAX_UI32 = MAX_UI32;
+    static const uint32_t IGN_DEPRECATED(2) DPRCT_MIN_UI32 = MIN_UI32;
+    static const uint32_t IGN_DEPRECATED(2) DPRCT_LOW_UI32 = LOW_UI32;
+    static const uint32_t IGN_DEPRECATED(2) DPRCT_INF_UI32 = INF_UI32;
+    static const int32_t IGN_DEPRECATED(2) DPRCT_MAX_I32 = MAX_I32;
+    static const int32_t IGN_DEPRECATED(2) DPRCT_MIN_I32 = MIN_I32;
+    static const int32_t IGN_DEPRECATED(2) DPRCT_LOW_I32 = LOW_I32;
+    static const int32_t IGN_DEPRECATED(2) DPRCT_INF_I32 = INF_I32;
+    static const uint64_t IGN_DEPRECATED(2) DPRCT_MAX_UI64 = MAX_UI64;
+    static const uint64_t IGN_DEPRECATED(2) DPRCT_MIN_UI64 = MIN_UI64;
+    static const uint64_t IGN_DEPRECATED(2) DPRCT_LOW_UI64 = LOW_UI64;
+    static const uint64_t IGN_DEPRECATED(2) DPRCT_INF_UI64 = INF_UI64;
+    static const int64_t IGN_DEPRECATED(2) DPRCT_MAX_I64 = MAX_I64;
+    static const int64_t IGN_DEPRECATED(2) DPRCT_MIN_I64 = MIN_I64;
+    static const int64_t IGN_DEPRECATED(2) DPRCT_LOW_I64 = LOW_I64;
+    static const int64_t IGN_DEPRECATED(2) DPRCT_INF_I64 = INF_I64;
 
     /// \brief Simple clamping function
     /// \param[in] _v value
@@ -353,6 +520,28 @@ namespace ignition
     {
       IGN_FP_VOLATILE T diff = std::abs(_a - _b);
       return diff <= _epsilon;
+    }
+
+    /// \brief inequality test, within a tolerance
+    /// \param[in] _a the first value
+    /// \param[in] _b the second value
+    /// \param[in] _epsilon the tolerance
+    template<typename T>
+    inline bool lessOrNearEqual(const T &_a, const T &_b,
+                            const T &_epsilon = 1e-6)
+    {
+      return _a < _b + _epsilon;
+    }
+
+    /// \brief inequality test, within a tolerance
+    /// \param[in] _a the first value
+    /// \param[in] _b the second value
+    /// \param[in] _epsilon the tolerance
+    template<typename T>
+    inline bool greaterOrNearEqual(const T &_a, const T &_b,
+                               const T &_epsilon = 1e-6)
+    {
+      return _a > _b - _epsilon;
     }
 
     /// \brief get value at a specified precision

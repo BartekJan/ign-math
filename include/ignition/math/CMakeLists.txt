@@ -1,13 +1,11 @@
 include (${project_cmake_dir}/Utils.cmake)
 
 set (headers
-  AffineException.hh
   Angle.hh
   Box.hh
   Filter.hh
   Frustum.hh
   Helpers.hh
-  IndexException.hh
   Inertial.hh
   Kmeans.hh
   Line2.hh
@@ -15,13 +13,17 @@ set (headers
   MassMatrix3.hh
   Matrix3.hh
   Matrix4.hh
+  PID.hh
   Plane.hh
   Pose3.hh
   Quaternion.hh
   Rand.hh
   RotationSpline.hh
+  SemanticVersion.hh
   SignalStats.hh
+  SphericalCoordinates.hh
   Spline.hh
+  System.hh
   Temperature.hh
   Triangle.hh
   Triangle3.hh
