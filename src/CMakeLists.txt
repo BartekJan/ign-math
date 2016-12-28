@@ -5,12 +5,14 @@ set (sources
   Box.cc
   Frustum.cc
   Helpers.cc
-  IndexException.cc
   Kmeans.cc
+  PID.cc
   Rand.cc
   RotationSpline.cc
   RotationSplinePrivate.cc
+  SemanticVersion.cc
   SignalStats.cc
+  SphericalCoordinates.cc
   Spline.cc
   Temperature.cc
   Vector3Stats.cc
@@ -29,12 +31,15 @@ set (gtest_sources
   MassMatrix3_TEST.cc
   Matrix3_TEST.cc
   Matrix4_TEST.cc
+  PID_TEST.cc
   Plane_TEST.cc
   Pose_TEST.cc
   Quaternion_TEST.cc
   Rand_TEST.cc
   RotationSpline_TEST.cc
+  SemanticVersion_TEST.cc
   SignalStats_TEST.cc
+  SphericalCoordinates_TEST.cc
   Spline_TEST.cc
   Temperature_TEST.cc
   Triangle_TEST.cc
