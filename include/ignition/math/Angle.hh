@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 Open Source Robotics Foundation
+ * Copyright (C) 2012 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,9 +58,10 @@ namespace ignition
       /// \brief Constructor
       public: Angle();
 
-      /// \brief Copy Constructor
+      /// \brief Conversion Constructor
       /// \param[in] _radian Radians
-      public: Angle(double _radian);
+      // cppcheck-suppress noExplicitConstructor
+      public: Angle(const double _radian);
 
       /// \brief Copy constructor
       /// \param[in] _angle Angle to copy
