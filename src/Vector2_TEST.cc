@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 Open Source Robotics Foundation
+ * Copyright (C) 2012 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -124,13 +124,14 @@ TEST(Vector2Test, Vector2)
 }
 
 /////////////////////////////////////////////////
-TEST(Vector2Test, IndexException)
+TEST(Vector2Test, NoException)
 {
   math::Vector2d v(1, 2);
   EXPECT_NO_THROW(math::equal(v[0], 1.0));
   EXPECT_NO_THROW(math::equal(v[1], 2.0));
 
-  EXPECT_THROW(math::equal(v[2], 1.0), math::IndexException);
+  EXPECT_NO_THROW(math::equal(v[2], 1.0));
+  EXPECT_DOUBLE_EQ(v[2], 2.0);
 }
 
 /////////////////////////////////////////////////

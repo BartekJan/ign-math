@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 Open Source Robotics Foundation
+ * Copyright (C) 2012 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,11 +100,12 @@ Vector3d Spline::Interpolate(double _t) const
 }
 
 ///////////////////////////////////////////////////////////
-Vector3d Spline::Interpolate(unsigned int _fromIndex, double _t) const
+Vector3d Spline::Interpolate(const unsigned int _fromIndex,
+                             const double _t) const
 {
   // Bounds check
   if (_fromIndex >= this->dataPtr->points.size())
-    throw IndexException();
+    return Vector3d(INF_D, INF_D, INF_D);
 
   if ((_fromIndex + 1) == this->dataPtr->points.size())
   {
@@ -227,19 +228,19 @@ void Spline::RecalcTangents()
 }
 
 ///////////////////////////////////////////////////////////
-Vector3d Spline::Point(unsigned int _index) const
+Vector3d Spline::Point(const unsigned int _index) const
 {
   if (_index >= this->dataPtr->points.size())
-    throw IndexException();
+    return Vector3d(INF_D, INF_D, INF_D);
 
   return this->dataPtr->points[_index];
 }
 
 ///////////////////////////////////////////////////////////
-Vector3d Spline::Tangent(unsigned int _index) const
+Vector3d Spline::Tangent(const unsigned int _index) const
 {
   if (_index >= this->dataPtr->tangents.size())
-    throw IndexException();
+    return Vector3d(INF_D, INF_D, INF_D);
 
   return this->dataPtr->tangents[_index];
 }
@@ -258,14 +259,15 @@ void Spline::Clear()
 }
 
 ///////////////////////////////////////////////////////////
-void Spline::UpdatePoint(unsigned int _index, const Vector3d &_value)
+bool Spline::UpdatePoint(const unsigned int _index, const Vector3d &_value)
 {
   if (_index >= this->dataPtr->points.size())
-    throw IndexException();
+    return false;
 
   this->dataPtr->points[_index] = _value;
   if (this->dataPtr->autoCalc)
     this->RecalcTangents();
+  return true;
 }
 
 ///////////////////////////////////////////////////////////
