@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 Open Source Robotics Foundation
+ * Copyright (C) 2012 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -458,6 +458,30 @@ namespace ignition
       return (_v % 2) != 0;
     }
 
+    /// \brief The signum function.
+    ///
+    /// Returns 0 for zero values, -1 for negative values,
+    /// +1 for positive values.
+    /// \param[in] _value The value.
+    /// \return The signum of the value.
+    template<typename T>
+    inline int sgn(T _value)
+    {
+      return (T(0) < _value) - (_value < T(0));
+    }
+
+    /// \brief The signum function.
+    ///
+    /// Returns 0 for zero values, -1 for negative values,
+    /// +1 for positive values.
+    /// \param[in] _value The value.
+    /// \return The signum of the value.
+    template<typename T>
+    inline int signum(T _value)
+    {
+      return sgn(_value);
+    }
+
     /// \brief get mean of vector of values
     /// \param[in] _values the vector of values
     /// \return the mean
@@ -516,7 +540,7 @@ namespace ignition
     /// \param[in] _epsilon the tolerance
     template<typename T>
     inline bool equal(const T &_a, const T &_b,
-                      const T &_epsilon = 1e-6)
+                      const T &_epsilon = T(1e-6))
     {
       IGN_FP_VOLATILE T diff = std::abs(_a - _b);
       return diff <= _epsilon;
